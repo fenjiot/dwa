@@ -12,20 +12,24 @@
 
   <div id="main" class="span-20 last">
 	<div class='titles'>
-		<h2>Project 1</h2>
-			<p>fwoiabwaovbweoace</p>
+		<h2>Name: </h2>
+			<p>Frank Wu</p>
 	</div>
 	<div class='titles'> 
-		<h2>Project 2</h2>
-			<p>fweoifhawofiwa</p>
+		<h2>Bio:</h2>
+			<p>I am something something</p>
 	</div>
 	<div class='titles'>
-		<h2>Project 3</h2>
-			<p>iwofawfawfw</p>
+		<h2>Hosting: </h2>
+			<p>with A Small Orange</p>
 	</div>
 	<div class='titles'>
-		<h2>Project 4</h2>
-			<p>fweofhawofhwa</p>
+		<h2>Code editor: </h2>
+			<p>TextWrangler</p>
+	</div>
+	<div class='titles'>
+		<h2>Link to Git: </h2>
+			<p>https://github.com/fenjiot/dwa/</p>
 	</div>
   </div>
 
