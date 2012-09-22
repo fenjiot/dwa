@@ -47,9 +47,6 @@ p {
 /* BEGIN Background CSS */
 	html { 
 		background: url(../images/upsidedown.png) no-repeat center center fixed; 
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
-		-o-background-size: cover;
 		background-size: cover;
 	} /* using for image background insert and placement; thank you CSS3 */
 /* END Background CSS */
@@ -79,7 +76,6 @@ border: thin green solid;
 	height: 75px; /* position of bar */
 	background: #000000;
 	opacity: 0.6; /* makes the bar transparent */
-	filter: alpha(opacity=60); /* compatibility for IE8 and earlier */
 	padding: 7px 0 0 7px;
 	}
 
@@ -89,7 +85,6 @@ border: thin green solid;
 	margin-bottom: -63px;
 	width: 110px; /* width of titlebox */
 	opacity: 0.9;
-	filter: alpha(opacity=90); /* compatibility for IE8 and earlier */
 	}
 	
 #titlenav a { /* deals with titlenav linking */
@@ -141,7 +136,6 @@ border: thin orange dotted;
 	background: #ffffff;
 	padding: 0px 30px 30px;
 	opacity: 0.95;
-	filter: alpha(opacity=95); /* compatibility for IE8 and earlier */
 	}
 	
 .box div a {
