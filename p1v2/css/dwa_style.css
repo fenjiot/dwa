@@ -64,6 +64,7 @@ border: thin green solid;
 
 /* BEGIN Nav CSS */
 #nav { /* setting the rightside's nav box's position */
+border: thin yellow solid;
 	position: relative;
 	top: 20px; /* moves whole nav box */
 	left: 110px; /* moves whole nav box */
