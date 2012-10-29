@@ -32,7 +32,7 @@ A email designated to receive messages from the server. Examples:
 	define('SYSTEM_EMAIL', 'webmaster@myapp.com'); 
 
 # Default DB name for this app
-	define('DB', "myapp_com"); 
+	define('DB_NAME', "fenjiotc_p2_fenjiot_com"); 
 
 # Timezone
 	define('TIMEZONE', 'America/New_York');
@@ -44,5 +44,5 @@ A email designated to receive messages from the server. Examples:
 	//define('SMTP_PASSWORD', '');
 
 # For extra security, you might want to set different salts than what the core uses
-	//define('PASSWORD_SALT', '');
-	//define('TOKEN_SALT', '');
+	define('PASSWORD_SALT', 'cephiro');
+	define('TOKEN_SALT', 'mikaohna');
