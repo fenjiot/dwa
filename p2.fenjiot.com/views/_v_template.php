@@ -15,6 +15,29 @@
 </head>
 
 <body>	
+	
+	<div id='menu'>
+	
+		<!-- Menu for users that are logged in -->
+		<? if($user): ?>
+		
+			<span>Signed in as <a href="/users/profile/"><?=$user->first_name?></a> | </span>
+			<a href="/users/logout/">Logout</a>
+			<a href="/posts/users/">Change who you're following</a>
+			<a href="/posts/">View posts</a>
+			<a href="/posts/add">Add a new post</a>
+			
+		<!-- Menu for those not logged in -->
+		<? else: ?>
+		
+			<a href="/users/signup">Sign Up</a>
+			<a href="/users/login">Login</a>
+			
+		<? endif; ?>
+	
+	</div>
+	
+	<br>
 
 	<?=$content;?> 
 

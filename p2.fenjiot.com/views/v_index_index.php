@@ -1,6 +1,15 @@
-<pre>
-Hello World!
-Controller: c_index.php
-Method: index()
-View: v_index_index.php
-</pre>
+<div>Welcome
+
+	<!-- For users who are logged in -->
+	<? if($user): ?>
+		
+		<?=$user->first_name?>
+	
+	<!-- For users who are not logged in -->	
+	<? else: ?>
+		
+		stranger
+		
+	<? endif; ?>
+	
+</div>

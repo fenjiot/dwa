@@ -47,11 +47,14 @@ class users_controller extends base_controller {
 		
 	} # end of p_signup fct
 	
-	public function login() {
+	public function login($error = NULL) {
 		
 		# Setup view
 		$this->template->content 	= View::instance('v_users_login');
 		$this->template->title		= "Login";
+		
+		# Pass data to the view
+		$this->template->content->error = $error;
 		
 		# Render template
 		echo $this->template;
@@ -71,15 +74,14 @@ class users_controller extends base_controller {
 		$q = "SELECT token
 			FROM users
 			WHERE email = '".$_POST['email']."'
-			AND password = '".$_POST['password']."'
-			";
+			AND password = '".$_POST['password']."'";
 		
 		$token = DB::instance(DB_NAME)->select_field($q);
 		
 		# If we don't get a token back, login failed
-		if(!$token) {
+		if($token == "") {
 			# Send back to to login page
-			Router::redirect("/users/login/"); // Maybe add message that says login failed.
+			Router::redirect("/users/login/error");
 			
 			echo "login failed";
 		
@@ -87,7 +89,7 @@ class users_controller extends base_controller {
 		# But if we do, login succeeded!
 		else {
 			# Store this token in a cookie
-			setcookie("token", $token, strtotime('+1 week'),'/');
+			setcookie("token", $token, strtotime('+2 weeks'),'/');
 			
 			# Send them to the main logged in page -- TBD
 			Router::redirect("/"); // CHANGE REDIRECT to the page you want.  "/" is going to index.
@@ -132,6 +134,7 @@ class users_controller extends base_controller {
 			$this->template->content 	= View::instance('v_users_profile');
 			$this->template->title		= "Profile of ".$this->user->first_name;
 			
+			// check this code below v
 			# Load CSS / JS
 			$client_files = Array(
 				"/css/users.css",
@@ -139,6 +142,7 @@ class users_controller extends base_controller {
 				);
 				
 			$this->template->client_files = Utils::load_client_files($client_files);
+			// check this code above ^
 			
 			# Pass information to the view
 			$this->template->content->user_name = $user_name;
