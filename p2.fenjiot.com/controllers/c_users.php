@@ -24,13 +24,7 @@ class users_controller extends base_controller {
 	} # end signup fct
 	
 	public function p_signup() {
-		
-		# Dump out the results of POST to see what form submitted.  Use for TESTING.
-		// print_r($_POST);
-		
-		// ADD LOGIC to prevent people from getting into p_signup !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		
-		
+				
 		# Encrypt user password
 		$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
 		
