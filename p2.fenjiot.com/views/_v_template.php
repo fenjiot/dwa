@@ -5,10 +5,13 @@
 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
 	
-	<!-- JS -->
+	<!-- Global JS -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
 				
+	<!-- Global CSS -->
+	<link rel="stylesheet" href="/css/master.css" type="text/css">
+	
 	<!-- Controller Specific JS/CSS -->
 	<?php echo @$client_files; ?>
 	
@@ -21,10 +24,10 @@
 		<!-- Menu for users that are logged in -->
 		<? if($user): ?>
 		
-			<span>Signed in as <a href="/users/profile/"><?=$user->first_name?></a> | </span>
-			<a href="/users/logout/">Logout</a>
-			<a href="/posts/users/">Change who you're following</a>
-			<a href="/posts/">View posts</a>
+			<span>Signed in as <a href="/users/profile"><?=$user->first_name?></a> | </span>
+			<a href="/users/logout">Logout</a>
+			<a href="/posts/users">Change who you're following</a>
+			<a href="/posts">View posts</a>
 			<a href="/posts/add">Add a new post</a>
 			
 		<!-- Menu for those not logged in -->

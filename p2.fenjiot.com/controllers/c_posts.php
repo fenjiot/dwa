@@ -9,7 +9,7 @@ class posts_controller extends base_controller	{
 			die("Members only. <a href='/users/login'>Login</a> or <a href='/users/signup'>Signup</a>");
 		}
 
-	} # end __construct
+	} // end __construct
 
 	public function add() {
 		
@@ -20,7 +20,7 @@ class posts_controller extends base_controller	{
 		# Render the view
 		echo $this->template;
 		
-	} # end add fct
+	} // end add fct
 	
 	public function p_add() {
 		
@@ -38,7 +38,7 @@ class posts_controller extends base_controller	{
 		# Feedback to user
 		echo "Your post has been added. <a href='/posts/add'>Add another post!</a>"; 		// MAKE THIS BETTER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-	} # end p_add fct
+	} // end p_add fct
 	
 	public function index() {
 		
@@ -54,26 +54,34 @@ class posts_controller extends base_controller	{
 		# Execute our query, storing results in a variable $connections
 		$connections = DB::instance(DB_NAME)->select_rows($q); 
 		
-		
 		# In order to query for the posts we need, we're going to need a string of user id's, separated by commas
 		# To create this, loop through our connections array
 		$connections_string = ""; // empty at first
 		
 		foreach($connections as $key => $connection) {
 			$connections_string .= $connection['user_id_followed'] . ",";
+			
+		}
+
+		# Added to fix error that arises when following no one
+		# This avoids the issue later with having nothing in the '$q = "SELECT * ... IN ()";' syntax error with the empty ()
+		if($connections_string == "") {
+			# If $connections_string is empty (i.e. when the user isn't following anyone) set to user_id_followed 0
+			$connections_string = "0,";	
+		
 		}
 		
 		# Remove final comma in $connections_string
 		$connections_string = substr($connections_string, 0, -1);
-		
+			
 		# Now build our query to grab the posts
 		$q = "SELECT *
 			FROM posts
 			JOIN users USING (user_id)
 			WHERE posts.user_id IN (" . $connections_string . ")"; // this is where we're using the string of user_ids we created
-		
+
 		# Run our query and store the results in the variable $posts
-		$posts = DB::instance(DB_NAME)->select_rows($q);
+		$posts = DB::instance(DB_NAME)->select_rows($q);			
 		
 		# Pass the data to the view
 		$this->template->content->posts = $posts;
@@ -81,7 +89,7 @@ class posts_controller extends base_controller	{
 		# Render the view
 		echo $this->template;
 		
-	} # end index fct
+	} // end index fct
 	
 	public function users() {
 		
@@ -114,7 +122,7 @@ class posts_controller extends base_controller	{
 		# Render the view
 		echo $this->template;
 		
-	} # end users fct
+	} // end users fct
 	
 	public function follow($user_id_followed) {
 		
@@ -131,7 +139,7 @@ class posts_controller extends base_controller	{
 		# Send them back 
 		Router::redirect("/posts/users");
 		
-	} # end follow fct
+	} // end follow fct
 	
 	public function unfollow($user_id_followed) {
 		
@@ -145,6 +153,6 @@ class posts_controller extends base_controller	{
 	} # end unfollow fct
 	
 	
-} # end of the class
+} // end of the class
 
 ?>

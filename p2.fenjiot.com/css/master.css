@@ -1,0 +1,23 @@
+/* zero out all style */
+* {
+	border: 0px solid #eaeaea;
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	}
+/* END reset */
+
+/* styles menu box */
+#menu { 
+	border: thin solid #000000;
+	display: inline-block;
+	text-transform: uppercase;
+} 
+
+/* styles individual menu buttons */
+#menu a {
+border: thin solid orange;
+	display: inline-block;
+	margin: 5px;
+	
+}

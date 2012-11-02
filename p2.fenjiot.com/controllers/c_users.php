@@ -5,12 +5,13 @@ class users_controller extends base_controller {
 		parent::__construct();
 		echo "users_controller construct called <br><br>";
 	
-	} # end __construct
+	} // end __construct
 	
 	public function index() {
+# WORK ON -------------------------------------------------------------------------------------- 
 		echo "Welcome to the user's department"; // shows up when you go to "/users". ADD LOGIC to prevent people from getting into this !!!!!!!!!!!!!!!!!!!!!!!!
-	
-	} # end index fct
+# WORK ON -------------------------------------------------------------------------------------- 	
+	} // end index fct
 
 	public function signup() {
 		
@@ -21,7 +22,7 @@ class users_controller extends base_controller {
 		# Render template
 		echo $this->template;
 				
-	} # end signup fct
+	} // end signup fct
 	
 	public function p_signup() {
 				
@@ -39,7 +40,7 @@ class users_controller extends base_controller {
 		# For now, just confirm that they've signed up -- make nicer later
 		echo "Hurrah! You're signed up!";
 		
-	} # end of p_signup fct
+	} // end of p_signup fct
 	
 	public function login($error = NULL) {
 		
@@ -53,7 +54,7 @@ class users_controller extends base_controller {
 		# Render template
 		echo $this->template;
 		
-	} # end login fct
+	} // end login fct
 	
 	public function p_login() {
 		
@@ -90,7 +91,7 @@ class users_controller extends base_controller {
 		
 		}
 		
-	} # end p_login fct
+	} // end p_login fct
 	
 	public function logout() {
 		
@@ -110,7 +111,7 @@ class users_controller extends base_controller {
 		# Send them back to the main landing page
 		Router::redirect("/");
 		
-	} # end logout fct
+	} // end logout fct
 	
 	public function profile($user_name = NULL) {
 		
@@ -146,8 +147,15 @@ class users_controller extends base_controller {
 
 		}
 		
-	} # end profile fct
+	} // end profile fct
+
+# WORK ON -------------------------------------------------------------------------------------- 	
+	public function delete_user($user_id) {
+		$q = "DELETE FROM `fenjiotc_p2_fenjiot_com`.`users` WHERE `users`.`user_id` = $user_id";
+
+	} // end of delete_user fct
+# WORK ON --------------------------------------------------------------------------------------
 	
-} # end of the class
+} // end of the class
 
 ?>
