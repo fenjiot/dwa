@@ -12,11 +12,8 @@
 		<?=$post['content']?>
 		
 		<br><br>
+
 		
 	<? endforeach; ?>
 	
-	<h4>I'm outside the foreach loop!</h4>
-	
 <? endif; ?>
-
-<h4>I'm outside the if else loop!</h4>
