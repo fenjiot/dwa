@@ -7,8 +7,7 @@
 	
 	<? foreach($posts as $post): ?>
 	
-<?=$post['first_name']?> <!-- line of debug code -->
-		<div class="infotext">Posted on <!--<?=TIME::display($post['modified'])?>--></div>
+		<div class="infotext">Posted on <?=Time::display($post['modified'])?></div>
 		<h2><?=$post['first_name']?> <?=$post['last_name']?> posted:</h2>
 		<?=$post['content']?>
 		
