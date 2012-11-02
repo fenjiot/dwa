@@ -13,7 +13,7 @@
 		
 		<br><br>
 		
-<? print_r($post) ?> <!-- FOR TESTING ONLY WANT TO TRIM DOWN INFORMATION PASSED INTO VIEW FROM $posts -->
+
 		
 	<? endforeach; ?>
 	
