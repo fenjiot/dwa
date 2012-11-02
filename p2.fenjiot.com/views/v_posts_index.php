@@ -7,7 +7,7 @@
 	
 	<? foreach($posts as $post): ?>
 	
-		<div class="infotext"><p>Posted on <!--<?=TIME::display($post['modified'])?>--></div>
+		<div class="infotext">Posted on <!--<?=TIME::display($post['modified'])?>--></div>
 		<h2><?=$post['first_name']?> <?=$post['last_name']?> posted:</h2>
 		<?=$post['content']?>
 		
@@ -18,3 +18,5 @@
 	<h4>I'm outside the foreach loop!</h4>
 	
 <? endif; ?>
+
+<h4>I'm outside the if else loop!</h4>
