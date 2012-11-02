@@ -7,13 +7,13 @@
 	
 	<? foreach($posts as $post): ?>
 	
-		<div class="infotext">Posted on <?=Time::display($post['posts.modified'])?></div>
+		<div class="infotext">Posted on <?=Time::display($post['post.modified'])?></div>
 		<h2><?=$post['first_name']?> <?=$post['last_name']?> posted:</h2>
 		<?=$post['content']?>
 		
 		<br><br>
 		
-
+<? print_r($post) ?> <!-- FOR TESTING ONLY WANT TO TRIM DOWN INFORMATION PASSED INTO VIEW FROM $posts -->
 		
 	<? endforeach; ?>
 	

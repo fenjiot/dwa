@@ -1,6 +1,6 @@
 <form method='POST' action='/users/p_signup'>
 
-	Frist Name <br>
+	First Name <br>
 	<input type='text' name='first_name'>
 	<br><br>
 
