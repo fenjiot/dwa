@@ -73,12 +73,17 @@ class posts_controller extends base_controller	{
 		
 		# Remove final comma in $connections_string
 		$connections_string = substr($connections_string, 0, -1);
-			
+		
+		# Selecting specific information we want $post to contain later on 
+		# We don't want to pass token, user.password, user.created, user.modified, etc
+		# Using DB table: posts AS p, users AS u		
+		$select = "p.post_id, p.created, p.modified, p.user_id, p.content, u.user_id, u.email, u.first_name, u.last_name";
+		
 		# Now build our query to grab the posts
-		$q = "SELECT *
-			FROM posts
-			JOIN users USING (user_id)
-			WHERE posts.user_id IN (" . $connections_string . ")"; // this is where we're using the string of user_ids we created
+		$q = "SELECT " . $select . "
+			FROM posts AS p
+			JOIN users AS u USING (user_id)
+			WHERE p.user_id IN (" . $connections_string . ")"; // this is where we're using the string of user_ids we created
 
 		# Run our query and store the results in the variable $posts
 		$posts = DB::instance(DB_NAME)->select_rows($q);			

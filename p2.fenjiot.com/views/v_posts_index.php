@@ -4,17 +4,15 @@
  	<a href="/posts/users/">Follow someone</a>
 
 <? else: ?>
-	
-	<? foreach($posts as $post): ?>
-	
-		<div class="infotext">Posted on <?=Time::display($post['post.modified'])?></div>
-		<h2><?=$post['first_name']?> <?=$post['last_name']?> posted:</h2>
-		<?=$post['content']?>
-		
-		<br><br>
-		
 
-		
+	<? foreach($posts as $post): ?>
+		<div class="posts">
+			<div class="infotext">Posted on <?=Time::display($post['modified'])?></div>
+			<h2><?=$post['first_name']?> <?=$post['last_name']?> posted:</h2>
+			<?=$post['content']?>
+			
+			<br><br>
+		</div>
 	<? endforeach; ?>
 	
 <? endif; ?>
