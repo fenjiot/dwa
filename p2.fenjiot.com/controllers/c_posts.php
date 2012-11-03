@@ -11,6 +11,7 @@ class posts_controller extends base_controller	{
 
 	} // end __construct
 
+
 	public function add() {
 		
 		# Setup the view
@@ -21,6 +22,7 @@ class posts_controller extends base_controller	{
 		echo $this->template;
 		
 	} // end add fct
+	
 	
 	public function p_add() {
 		
@@ -39,6 +41,7 @@ class posts_controller extends base_controller	{
 		echo "Your post has been added. <a href='/posts/add'>Add another post!</a>"; 		// MAKE THIS BETTER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 	} // end p_add fct
+	
 	
 	public function index() {
 		
@@ -96,6 +99,7 @@ class posts_controller extends base_controller	{
 		
 	} // end index fct
 	
+	
 	public function users() {
 		
 		# Setup the view
@@ -129,6 +133,7 @@ class posts_controller extends base_controller	{
 		
 	} // end users fct
 	
+	
 	public function follow($user_id_followed) {
 		
 		# Prepare our data array to be instered
@@ -146,6 +151,7 @@ class posts_controller extends base_controller	{
 		
 	} // end follow fct
 	
+	
 	public function unfollow($user_id_followed) {
 		
 		# Delete this connection
@@ -156,6 +162,50 @@ class posts_controller extends base_controller	{
 		Router::redirect("/posts/users");
 		
 	} # end unfollow fct
+	
+	
+	public function myposts() {
+	
+		# Setup the view
+		$this->template->content	= View::instance('v_posts_myposts');
+		$this->template->title		= $this->user->first_name."'s posts";
+		
+		# Selecting specific information we want $post to contain later on 
+		# We don't want to pass token, user.password, user.created, user.modified, etc
+		# Using DB table: posts AS p, users AS u		
+		$select = "p.post_id, p.created, p.modified, p.user_id, p.content, u.user_id, u.email, u.first_name, u.last_name";
+		
+		# Build our query of posts -- we're only interested in the ones the user created.
+		$q = "SELECT " . $select . "
+			FROM posts AS p
+			JOIN users AS u USING (user_id)
+			WHERE p.user_id = ".$this->user->user_id;
+		
+		# Execute our query, storing results in a variable $posts
+		$posts = DB::instance(DB_NAME)->select_rows($q); 
+		
+		# Pass the data to the view
+		$this->template->content->posts	= $posts;
+		
+		# Render the view
+		echo $this->template;
+		
+	} // end myposts fct
+	
+		
+	public function edit() {
+
+		# Unix timestamp of when this post was modified
+		$_POST['modified'] 	= Time::now();
+		
+		# Update post content and modified timestamp 
+		# Note: we don't have to sanatize any of the $_POST data because we're using an update method that does it for us
+		DB::instance(DB_NAME)->update_row('posts', $_POST, "WHERE post_id =".$_POST['post_id']);
+		
+		# Feedback to user
+		echo "Your post has been edited. <br><br> <a href='/posts/myposts'>&lt;&lt; Back</a> to your posts";
+	
+	} // end edit fct
 	
 	
 } // end of the class

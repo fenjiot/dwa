@@ -29,6 +29,7 @@
 				<a href="/users/logout">Logout</a>
 				<a href="/posts/users">Change who you're following</a>
 				<a href="/posts">View posts</a>
+				<a href="/posts/myposts">View your posts</a>
 				<a href="/posts/add">Add a new post</a>
 				<a href="/users/delete">Delete user</a>
 			</span>

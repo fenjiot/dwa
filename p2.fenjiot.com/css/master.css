@@ -31,3 +31,8 @@ border: thin solid grey;
 .strong { /* bold */
 	font-weight: 900;	
 }
+
+.infotext { /* */
+	font-size: smaller;
+	font-weight: 400;
+}

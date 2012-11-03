@@ -7,13 +7,14 @@ class users_controller extends base_controller {
 	
 	} // end __construct
 	
+	
 	public function index() {
-# WORK ON -------------------------------------------------------------------------------------- 
+# WORK ON --------------------------------------------------------------------------------------------------------------------------------
 		echo "Welcome to the user's department"; // shows up when you go to "/users". ADD LOGIC to prevent people from getting into this !!!!!!!!!!!!!!!!!!!!!!!!
-# WORK ON -------------------------------------------------------------------------------------- 	
+# WORK ON --------------------------------------------------------------------------------------------------------------------------------	
 	} // end index fct
 	
-# WORK ON --------------------------------------------------------------------------------------------------------------------------------
+
 	public function signup() {
 		
 		# Setup view
@@ -24,6 +25,7 @@ class users_controller extends base_controller {
 		echo $this->template;
 				
 	} // end signup fct
+	
 	
 	public function p_signup() {
 
@@ -59,8 +61,7 @@ class users_controller extends base_controller {
 		}
 
 	} // end of p_signup fct
-# WORK ON ------------------------------------------------------------------------------------------------------------------------------
-
+	
 
 	public function login($error = NULL) {
 		
@@ -75,6 +76,7 @@ class users_controller extends base_controller {
 		echo $this->template;
 		
 	} // end login fct
+	
 	
 	public function p_login() {
 		
@@ -113,6 +115,7 @@ class users_controller extends base_controller {
 		
 	} // end p_login fct
 	
+	
 	public function logout() {
 		
 		# Generate and save a new token for next login
@@ -132,6 +135,7 @@ class users_controller extends base_controller {
 		Router::redirect("/");
 		
 	} // end logout fct
+	
 	
 	public function profile($user_name = NULL) {
 		
@@ -169,6 +173,7 @@ class users_controller extends base_controller {
 		
 	} // end profile fct
 	
+	
 	public function delete() {
 	
 		# Setup view
@@ -184,6 +189,7 @@ class users_controller extends base_controller {
 		echo $this->template;
 
 	} // end of delete fct
+	
 	
 	public function p_delete() {
 
