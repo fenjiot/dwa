@@ -30,6 +30,7 @@
 				<a href="/posts/users">Change who you're following</a>
 				<a href="/posts">View posts</a>
 				<a href="/posts/add">Add a new post</a>
+				<a href="/users/delete">Delete user</a>
 			</span>
 			
 		<!-- Menu for those not logged in -->

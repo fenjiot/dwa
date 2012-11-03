@@ -12,7 +12,8 @@ class users_controller extends base_controller {
 		echo "Welcome to the user's department"; // shows up when you go to "/users". ADD LOGIC to prevent people from getting into this !!!!!!!!!!!!!!!!!!!!!!!!
 # WORK ON -------------------------------------------------------------------------------------- 	
 	} // end index fct
-
+	
+# WORK ON --------------------------------------------------------------------------------------------------------------------------------
 	public function signup() {
 		
 		# Setup view
@@ -25,7 +26,7 @@ class users_controller extends base_controller {
 	} // end signup fct
 	
 	public function p_signup() {
-				
+
 		# Encrypt user password
 		$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
 		
@@ -36,12 +37,24 @@ class users_controller extends base_controller {
 		
 		# Insert this user into the database.  Adds contents of $_POST into database.
 		$user_id = DB::instance(DB_NAME)->insert("users",$_POST);
+
+# Code logic to make sure there isn't an existing user with same email
 		
-		# For now, just confirm that they've signed up -- make nicer later
-		echo "Hurrah! You're signed up!";
+		# check email
 		
+#		if() {
+			
+#		}
+#		else {
+			# For now, just confirm that they've signed up -- make nicer later like auto login
+			echo "Hurrah! You're signed up! <a href='/users/login'>Login!</a>";
+			
+#		}
+
 	} // end of p_signup fct
-	
+# WORK ON ------------------------------------------------------------------------------------------------------------------------------
+
+
 	public function login($error = NULL) {
 		
 		# Setup view
@@ -150,10 +163,41 @@ class users_controller extends base_controller {
 	} // end profile fct
 
 # WORK ON -------------------------------------------------------------------------------------- 	
-	public function delete_user($user_id) {
-		$q = "DELETE FROM `fenjiotc_p2_fenjiot_com`.`users` WHERE `users`.`user_id` = $user_id";
+	public function delete() {
+	
+		# Setup view
+		$this->template->content 	= View::instance('v_users_delete');
+		$this->template->title		= "Erase ".$this->user->first_name." from this world";
+		
+		$user_id = $this->user->user_id;
+		
+		# Pass information to the view
+		$this->template->content->user_id = $user_id;
+		
+		# Render template
+		echo $this->template;
 
-	} // end of delete_user fct
+	} // end of delete fct
+	
+	public function p_delete() {
+
+		$answer = $_POST['group1']; 
+		
+		if($answer == "YES") {
+			# Goes through DB and removes user by user_id
+			DB::instance(DB_NAME)->delete('users', "WHERE user_id = '".$this->user->user_id."'");
+			
+			# Feedback to user
+			echo "Goodbye!  You know where to find us! <br><br> <a href='/users/signup'>Signup</a>";
+			
+		}
+		else {
+			# Feedback to user
+			echo "Whew!  We were a little worried there. <a href='/users/profile'>Come on</a>";	
+			
+		}
+
+	} // end of p_delete fct
 # WORK ON --------------------------------------------------------------------------------------
 	
 } // end of the class
