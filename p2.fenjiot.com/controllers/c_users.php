@@ -178,7 +178,7 @@ class users_controller extends base_controller {
 	
 		# Setup view
 		$this->template->content 	= View::instance('v_users_delete');
-		$this->template->title		= "Erase ".$this->user->first_name." from this world";
+		$this->template->title		= "Erasing ".$this->user->first_name;
 		
 		$user_id = $this->user->user_id;
 		

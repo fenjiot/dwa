@@ -1,38 +1,183 @@
-/* zero out all style */
-/*
-* {
-	border: 0px solid #eaeaea;
-	margin: 0px;
-	padding: 0px;
-	list-style: none;
+/* RESET
+----------------------------------------------------------------- */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+/* ================================================================= */
+/* Start Global Styles */
+/* GENERAL
+----------------------------------------------------------------- */
+
+body {
+	margin: 0;
+	padding: 0;
+	background: #d2ddd3 url(../images/citylights1427.png) no-repeat center center fixed;
+	font-family: Georgia, serif;
+	font-size: 15px;
 	}
-*/
-/* END reset */
 
-/* styles menu box */
-#menu { 
-	border: thin solid #000000;
-	display: inline-block;
-	text-transform: uppercase;
-} 
+strong {
+	font-weight: bold;
+	}
 
-/* styles individual menu buttons */
-#menu a {
-border: thin solid orange;
-	display: inline-block;
-	margin: 5px;
+em {
+	font-style: italic;
+	}
+
+ul, li {
+	list-style-type: none;
+}
+
+a:link, a:visited, a:hover, a:active {
+	color: #4c4744;
+	text-decoration: none;
+	}
+
+/* End Global Styles */
+
+
+/* Start Navigation Styles */
+
+#nav_main { 
+	border: #140833 solid thin;
+	font-family: Helvetica, Arial, sans-serif; 
+} /* will affect everything Navigation related */
+
+#nav_top_left {
+	position: fixed;
+	top: 20px; /* moves whole nav box W px from the top */
+	background-color: #000000;
+	width: 60px; /* width of titlebox */
+	opacity: 0.9;
+	z-index: 80; /* higher z-index then #cont -> higher stack order -> is placed infront/on top */
+}
+
+#nav_top_left a { /* deals with linking */
+	color: #ffffff;
+	font-size: 15px; 
+	position: relative; 
+	top: 53px;
+	left: 35px;
+	display: block;
+	}
+	
+#nav_top_left a:hover { /* makes titlenav box change color when hover */
+	background: #fbb111; /* orange */
+	color: #000000;
+	}
+
+#nav_title {
+	position: fixed;
+	top: 20px; /* moves whole nav box W px from the top */
+	left: 122px; /* moves whole nav box Y px from the left */
+	padding: 7px 20px 10px 20px;
+	background: #d2ddd3;
+	z-index: 70; /* higher z-index then #cont -> higher stack order -> is placed infront/on top */
+	width: 100%;
+}
+
+#subnav_main {
+border: #000000 solid thin;
+	position: fixed;
+	top: 140px;
+	width: 180px;
+	background-color: #ffffff; 
+	margin: 0 0 0 10px;
+}
+
+#subnav_main a {
+	border: #986723 solid thin;
+	display: block;
+}
+
+#subnav_main a:hover { /* makes titlenav box change color when hover */
+	background: #fbb111; /* orange */
+	color: #000000;
+	}
+
+#subnav_second {
 	
 }
 
-.posts {
-border: thin solid grey;
+#menu {
+	position: fixed;
+	top: 104px;
+	z-index: 70; /* higher z-index then #cont -> higher stack order -> is placed infront/on top */
+	background: #ffffff;
+	font-size: 14px;
+	width: 100%;
 }
 
-.strong { /* bold */
-	font-weight: 900;	
+/* End Navigation Styles */
+
+/* Used for Nav font styling */
+
+h2 {
+	color: #4a4a4a;
 }
 
-.infotext { /* */
-	font-size: smaller;
-	font-weight: 400;
+.smallwords {
+	color: #222222;
+	font-size: 11px;
+	font-weight: 200;
 }
+
+.bigwords {
+	color: #000000;
+	font-size: 65px;
+	font-weight: 900;
+
+}
+
+.words {
+	color: #000000;
+	font-size: 50px;
+	font-weight: 500;
+
+}
+
+.mediumwords {
+	color: #000000;
+	font-size: 25px;
+	font-weight: 500;	
+}
+
+.postedtext {
+	color: #000000;
+	font-size: 25px;
+	font-weight: 500;	
+}
+/* Used for Nav font styling */
+
+#content {
+	border: #000000 solid thick;
+	background: #ffffff;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	top: 130px; /* something is already pushing this down a bit */
+	width: 500px;
+	padding: 20px;
+	z-index: 50;
+}
+
+

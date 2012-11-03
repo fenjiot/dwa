@@ -89,10 +89,15 @@ class posts_controller extends base_controller	{
 			WHERE p.user_id IN (" . $connections_string . ")"; // this is where we're using the string of user_ids we created
 
 		# Run our query and store the results in the variable $posts
-		$posts = DB::instance(DB_NAME)->select_rows($q);			
+		$posts = DB::instance(DB_NAME)->select_rows($q);
+		
+		# Reverse order of post information.  Toggle false to maintain Array order [0],[1],[2],[3], etc while other fields are switched.
+		# If original array was something like Array ([0]=>A, [1]=>B, [2]=>C)  Reverse array toggled false would be Array ([0]=>C, [1]=>B, [2]=>A).
+		# This way we get posts sorted in descending order (newest posts first, oldest last)
+		$reverse_posts = array_reverse($posts, false);	
 		
 		# Pass the data to the view
-		$this->template->content->posts = $posts;
+		$this->template->content->posts = $reverse_posts;
 		
 		# Render the view
 		echo $this->template;
@@ -104,7 +109,7 @@ class posts_controller extends base_controller	{
 		
 		# Setup the view
 		$this->template->content	= View::instance('v_posts_users');
-		$this->template->title		= "Users";
+		$this->template->title		= "People to Follow";
 		
 		# Build our query to get all the users
 		$q = "SELECT *
@@ -184,8 +189,13 @@ class posts_controller extends base_controller	{
 		# Execute our query, storing results in a variable $posts
 		$posts = DB::instance(DB_NAME)->select_rows($q); 
 		
+		# Reverse order of post information.  Toggle false to maintain Array order [0],[1],[2],[3], etc while other fields are switched.
+		# If original array was something like Array ([0]=>A, [1]=>B, [2]=>C)  Reverse array toggled false would be Array ([0]=>C, [1]=>B, [2]=>A).
+		# This way we get posts sorted in descending order (newest posts first, oldest last)
+		$reverse_posts = array_reverse($posts, false);	
+
 		# Pass the data to the view
-		$this->template->content->posts	= $posts;
+		$this->template->content->posts	= $reverse_posts;
 		
 		# Render the view
 		echo $this->template;
