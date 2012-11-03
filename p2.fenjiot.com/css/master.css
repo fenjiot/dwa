@@ -27,3 +27,7 @@ border: thin solid orange;
 .posts {
 border: thin solid grey;
 }
+
+.strong { /* bold */
+	font-weight: 900;	
+}

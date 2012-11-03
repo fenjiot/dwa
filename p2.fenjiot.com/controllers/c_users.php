@@ -35,21 +35,28 @@ class users_controller extends base_controller {
 		$_POST['modified']	= Time::now();
 		$_POST['token']		= sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());
 		
-		# Insert this user into the database.  Adds contents of $_POST into database.
-		$user_id = DB::instance(DB_NAME)->insert("users",$_POST);
+		# Check DB->users->email to make sure it doesn't already exist
+		$q = "SELECT *
+			FROM users
+			WHERE users.email = '".$_POST['email']."'"; 
 
-# Code logic to make sure there isn't an existing user with same email
+		$check = DB::instance(DB_NAME)->select_field($q);
 		
-		# check email
-		
-#		if() {
-			
-#		}
-#		else {
+		# Make sure there isn't an existing user with same email
+		if($check == "") {
+			# Insert this user into the database.  Adds contents of $_POST into database.
+			$user_id = DB::instance(DB_NAME)->insert("users",$_POST);
+
 			# For now, just confirm that they've signed up -- make nicer later like auto login
-			echo "Hurrah! You're signed up! <a href='/users/login'>Login!</a>";
+			echo "Hurrah! You're signed up! <br><br> <a href='/users/login'>Login! &gt;&gt;</a>";
 			
-#		}
+		}
+		else {
+			# Feedback to user  -- could make this prettier by sending them to custom signup failed page
+			# Could also make this better with JAVASCIPT...just saying...
+			echo "So sorry, <br><br>".$_POST['email']." <br><br>has already been registered. <br><br> <a href='/users/signup'>&lt;&lt; Back to Signup</a>";
+			
+		}
 
 	} // end of p_signup fct
 # WORK ON ------------------------------------------------------------------------------------------------------------------------------
@@ -161,8 +168,7 @@ class users_controller extends base_controller {
 		}
 		
 	} // end profile fct
-
-# WORK ON -------------------------------------------------------------------------------------- 	
+	
 	public function delete() {
 	
 		# Setup view
@@ -198,7 +204,6 @@ class users_controller extends base_controller {
 		}
 
 	} // end of p_delete fct
-# WORK ON --------------------------------------------------------------------------------------
 	
 } // end of the class
 
