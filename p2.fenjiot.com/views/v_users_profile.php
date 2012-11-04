@@ -6,11 +6,11 @@
 <form method='POST' action='/users/p_profile'>
 
 	<?=$user->first_name?> <br>
-	<input type='text' name='first_name' placeholder="First Name">
+	<input type='text' name='first_name' placeholder="First Name" required="required>
 	<br><br>
 
 	<?=$user->last_name?> <br>
-	<input type='text' name='last_name' placeholder="Last Name">
+	<input type='text' name='last_name' placeholder="Last Name" required="required">
 	<br><br>
 <!-- Not functioning as indended. Needs to be troubleshooted as to why error check isn't happening correctly. 
 	Please verify your: <br><br>
