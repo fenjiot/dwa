@@ -9,17 +9,20 @@ class users_controller extends base_controller {
 	
 	
 	public function index() {
-# WORK ON --------------------------------------------------------------------------------------------------------------------------------
-		echo "Welcome to the user's department"; // shows up when you go to "/users". ADD LOGIC to prevent people from getting into this !!!!!!!!!!!!!!!!!!!!!!!!
-# WORK ON --------------------------------------------------------------------------------------------------------------------------------	
+
+		Router::redirect("/");
+	
 	} // end index fct
 	
 
-	public function signup() {
+	public function signup($error = NULL) {
 		
 		# Setup view
 		$this->template->content	= View::instance('v_users_signup');
 		$this->template->title		= "Signup";
+		
+		# Pass data to the view
+		$this->template->content->error = $error;
 		
 		# Render template
 		echo $this->template;
@@ -49,14 +52,21 @@ class users_controller extends base_controller {
 			# Insert this user into the database.  Adds contents of $_POST into database.
 			$user_id = DB::instance(DB_NAME)->insert("users",$_POST);
 
-			# For now, just confirm that they've signed up -- make nicer later like auto login
-			echo "Hurrah! You're signed up! <br><br> <a href='/users/login'>Login! &gt;&gt;</a>";
+			# Sign the new user in
+			$token = $_POST['token'];
+			@setcookie("token", $token, strtotime('+2 weeks'), '/');
+
+			# Redirect to home page
+			Router::redirect("/");
 			
 		}
 		else {
+			Router::redirect("/users/signup/error");
+			
+			echo "So sorry, <br><br>".$_POST['email']." <br><br>has already been registered.";
 			# Feedback to user  -- could make this prettier by sending them to custom signup failed page
 			# Could also make this better with JAVASCIPT...just saying...
-			echo "So sorry, <br><br>".$_POST['email']." <br><br>has already been registered. <br><br> <a href='/users/signup'>&lt;&lt; Back to Signup</a>";
+			# Maybe in the future you should make an general error page that you can pass in notes instead of these echos.
 			
 		}
 
@@ -137,7 +147,7 @@ class users_controller extends base_controller {
 	} // end logout fct
 	
 	
-	public function profile($user_name = NULL) {
+	public function profile($user_name = NULL, $error = NULL) {
 		
 		# If user is blank, they're not logged in, show message and send to login page
 		if(!$this->user) {
@@ -152,19 +162,10 @@ class users_controller extends base_controller {
 			# Setup view
 			$this->template->content 	= View::instance('v_users_profile');
 			$this->template->title		= "Profile of ".$this->user->first_name;
-			
-			// check this code below v
-			# Load CSS / JS
-			$client_files = Array(
-				"/css/users.css",
-				"/js/users.js",
-				);
-				
-			$this->template->client_files = Utils::load_client_files($client_files);
-			// check this code above ^
-			
+						
 			# Pass information to the view
 			$this->template->content->user_name = $user_name;
+			$this->template->content->error = $error;
 			
 			# Render template
 			echo $this->template;
@@ -172,6 +173,41 @@ class users_controller extends base_controller {
 		}
 		
 	} // end profile fct
+	
+	
+	public function p_profile() {
+		
+		# Encrypt user password
+#		$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
+		
+		# More data we want stored with the user
+		$_POST['modified']	= Time::now();
+		
+		# Check DB->users->email to make sure it doesn't already exist
+#		$q = "SELECT *
+#			FROM users
+#			WHERE users.password = '".$_POST['password']."' AND users.email = '".$_POST['email']."'"; 
+
+#		$check = DB::instance(DB_NAME)->select_field($q);
+		
+		# Make sure password provided is correct
+#		if(!$check) {
+			
+			# Failed verification
+			# Redirect to profile with error
+#			Router::redirect("/users/profile/error");
+			
+#		}
+#		else {
+			# Update post content and modified timestamp 
+			# Note: we don't have to sanatize any of the $_POST data because we're using an update method that does it for us
+			DB::instance(DB_NAME)->update_row('users', $_POST, "WHERE user_id =".$this->user->user_id);
+			# Redirect to profile
+			Router::redirect("/users/profile/");
+			
+#		}
+
+	} // end of p_profile fct
 	
 	
 	public function delete() {
@@ -213,4 +249,3 @@ class users_controller extends base_controller {
 	
 } // end of the class
 
-?>

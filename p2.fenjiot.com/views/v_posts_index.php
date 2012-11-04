@@ -1,7 +1,7 @@
 <? if($posts == array ()): ?>
 	
  	<h2>You're not following anyone.&nbsp Nothing to see here.</h2>
- 	<a href="/posts/users/">Follow someone</a>
+ 	<a class="mediumwords" href="/posts/users/"> &nbsp&gt;&gt;Follow someone</a>
 
 <? else: ?>
 

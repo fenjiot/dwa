@@ -15,7 +15,14 @@
 	Password <br>
 	<input type='password' name='password' required="required">
 	<br><br>
-
+	
+	<? if($error): ?>
+		<div class="error">
+			 So sorry, that email address has already been registered.
+		</div>
+		<br>
+	<? endif; ?> 
+	
 	<input type='submit'>
 
 </form>

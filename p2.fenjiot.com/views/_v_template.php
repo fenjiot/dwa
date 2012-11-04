@@ -21,15 +21,18 @@
 	<!-- Menu for users that are logged in -->
 	<? if($user): ?>
 		<div id="nav_main">
+			
 			<div id="nav_top_left"> 
 				<a href="/">p2.fenjiot</a>		
 			</div>
+			
 			<div id="nav_title"> 
 				<span class="words">on </span><span class="bigwords"><?=@$title;?></span> <!-- Going to have to troubleshoot this later. Isn't showing what I want -->
 			</div>
-			<div id="subnav_main">
+			
+			<div id="subnav_main" class="smallwords">
 				<ul> 
-					<li><a id="Feed" href="/users">Feed</a></li>
+					<li><a id="Feed" href="/">Feed</a></li>
 					<li><a id="Posts" href="/posts">Posts</a></li>
 					<li><a id="Follow" href="/posts/users">Follow</a></li>
 					<li><a id="Account" href="/users/profile">Account</a></li>
@@ -37,14 +40,9 @@
 				</ul>
 			</div>
 			
-			<div id="subnav_second"> 
-				<a id="" href=""></a>
-			</div>
-			
 		</div>
 	
 		<div id="menu">
-		
 			<span>
 				Signed in as <a href="/users/profile"><?=$user->first_name?></a> | 
 				<a href="/users/logout">Logout | </a>
@@ -54,13 +52,14 @@
 				<a href="/posts/add">Add A New Post | </a>
 				<a href="/users/delete">Erase <?=$user->first_name?> | </a>
 			</span>
-			
+		</div>
+		
 	<!-- Menu for those not logged in -->
 	<? else: ?>
-	
-		<a href="/users/signup">Sign Up</a>
-		<a href="/users/login">Login</a>
-		
+		<div class="words">
+			<a href="/users/signup">Sign Up</a> <span class="strong"> | </span>
+			<a href="/users/login">Login</a>
+		</div>
 	<? endif; ?>
 	
 	</div>

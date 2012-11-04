@@ -47,10 +47,16 @@ ul, li {
 	list-style-type: none;
 }
 
-a:link, a:visited, a:hover, a:active {
+a:link, a:visited {
 	color: #4c4744;
 	text-decoration: none;
 	}
+	
+a:hover, a:active {
+	color: #fbb111;
+	text-decoration: none;
+	}
+
 
 /* End Global Styles */
 
@@ -114,10 +120,6 @@ border: #000000 solid thin;
 	color: #000000;
 	}
 
-#subnav_second {
-	
-}
-
 #menu {
 	position: fixed;
 	top: 104px;
@@ -145,14 +147,12 @@ h2 {
 	color: #000000;
 	font-size: 65px;
 	font-weight: 900;
-
 }
 
 .words {
 	color: #000000;
 	font-size: 50px;
 	font-weight: 500;
-
 }
 
 .mediumwords {
@@ -180,4 +180,18 @@ h2 {
 	z-index: 50;
 }
 
+.error {
+	color: #d0220e;
+}
 
+.success {
+	color: #1aa21c;
+}
+
+.following {
+	background-color: #96F3ED;
+}
+
+.notfollowing {
+	background-color: #DD101F;
+}

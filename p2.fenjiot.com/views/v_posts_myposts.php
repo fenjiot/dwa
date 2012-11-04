@@ -1,6 +1,18 @@
 <form method='POST' action='/posts/edit'>
 
-<? foreach($posts as $post): ?>
+<? if(!$posts):?>
+	<div class="mediumwords">You don't have any posts.</div>
+	
+	<br>
+	
+	<div class="words">How about adding one today?</div>
+	
+	<br>
+	
+	<?php include("views/v_posts_add.php"); ?>
+
+<? else: ?>
+	<? foreach($posts as $post): ?>
 		<div class="posts">
 			<h2><?=$post['first_name']?> <?=$post['last_name']?> says:</h2>
 			<div class="postedtext"><?=$post['content']?></div>
@@ -16,8 +28,8 @@
 					
 			<br><br>
 		</div>
-
-		
-<? endforeach; ?>
+	
+	<? endforeach; ?>
+<? endif; ?>
 
 </form>
