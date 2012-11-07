@@ -12,7 +12,7 @@
 	<?=$user->last_name?><br >
 	<input type='text' name='last_name' placeholder="Last Name" required="required">
 	<br><br>
-<!-- Not functioning as indended. Needs to be troubleshooted as to why error check isn't happening correctly. 
+
 	Please verify your: <br><br>
 	
 	Email <br>
@@ -23,13 +23,22 @@
 	<input type='password' name='password' required="required">
 	<br><br>
 	
-	<? if($error): ?>
+<!--  NOT WORKING YET
+	<? if($_POST = 1): ?>
+		<div class="success">
+			 Your information has been changed!
+		</div>
+		<br>
+		
+	<? else: ?>		
 		<div class="error">
 			 Sorry, please check your email and password!
 		</div>
 		<br>
+		
 	<? endif; ?> 
 -->
+
 	<input type='submit'>
 
 </form>

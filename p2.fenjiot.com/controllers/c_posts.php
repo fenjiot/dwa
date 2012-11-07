@@ -38,7 +38,7 @@ class posts_controller extends base_controller	{
 		DB::instance(DB_NAME)->insert('posts', $_POST);
 		
 		# Feedback to user
-		echo "Your post has been added. <a href='/posts/add'>Add another post!</a>"; 		// MAKE THIS BETTER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		Router::redirect("/posts/myposts/");
 
 	} // end p_add fct
 	
@@ -213,7 +213,8 @@ class posts_controller extends base_controller	{
 		DB::instance(DB_NAME)->update_row('posts', $_POST, "WHERE post_id = ".$_POST['post_id']); // that space after 'post_id = "' is super important...
 
 		# Feedback to user
-		echo "Your post has been edited. <br><br> <a href='/posts/myposts'>&lt;&lt; Back</a> to your posts";
+#		echo "Your post has been edited. <br><br> <a href='/posts/myposts'>&lt;&lt; Back</a> to your posts";
+		Router::redirect("/posts/myposts");
 	
 	} // end edit fct
 	

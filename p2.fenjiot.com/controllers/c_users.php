@@ -161,8 +161,8 @@ class users_controller extends base_controller {
 		else {
 			# Setup view
 			$this->template->content 	= View::instance('v_users_profile');
-			$this->template->title		= "Profile of ".$this->user->first_name;
-						
+			$this->template->title		= "Profile of ".$this->user->first_name;	
+			
 			# Pass information to the view
 			$this->template->content->user_name = $user_name;
 			$this->template->content->error = $error;
@@ -176,36 +176,48 @@ class users_controller extends base_controller {
 	
 	
 	public function p_profile() {
-		
+
 		# Encrypt user password
-#		$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
-		
+		$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
+
 		# More data we want stored with the user
 		$_POST['modified']	= Time::now();
 		
 		# Check DB->users->email to make sure it doesn't already exist
-#		$q = "SELECT *
-#			FROM users
-#			WHERE users.password = '".$_POST['password']."' AND users.email = '".$_POST['email']."'"; 
+		$q = "SELECT *
+			FROM users
+			WHERE user_id = '".$this->user->user_id."' AND password = '".$_POST['password']."' AND email = '".$_POST['email']."'"; 
 
-#		$check = DB::instance(DB_NAME)->select_field($q);
-		
+		$check = DB::instance(DB_NAME)->select_field($q);
+
 		# Make sure password provided is correct
-#		if(!$check) {
-			
+		if($check == "") {
+
+# Whole reporting of the error isn't working yet. I'm trying to use $_POST to report the error, but it's not working. 
+#Was using $error before, but was having issues passing $error, where as $_POST is global.
+#			$_POST = 2;
+
 			# Failed verification
 			# Redirect to profile with error
-#			Router::redirect("/users/profile/error");
+			Router::redirect("/users/profile/error");
 			
-#		}
-#		else {
+		}
+		else {
+			# Remove excess data from array.  Only want to pass relevant information to insert.
+			$insert_data = array ( "first_name" => $_POST['first_name'], "last_name" => $_POST['last_name'], "modified" => $_POST['modified'] );
+		
 			# Update post content and modified timestamp 
 			# Note: we don't have to sanatize any of the $_POST data because we're using an update method that does it for us
-			DB::instance(DB_NAME)->update_row('users', $_POST, "WHERE user_id =".$this->user->user_id);
+			DB::instance(DB_NAME)->update_row('users', $insert_data, "WHERE user_id =".$this->user->user_id);
+
+# Whole reporting of the error isn't working yet. I'm trying to use $_POST to report the error, but it's not working. 
+#Was using $error before, but was having issues passing $error, where as $_POST is global.
+#			$_POST = 1;
+			
 			# Redirect to profile
 			Router::redirect("/users/profile/");
 			
-#		}
+		}
 
 	} // end of p_profile fct
 	
