@@ -211,7 +211,7 @@ class posts_controller extends base_controller	{
 		# Update post content and modified timestamp 
 		# Note: we don't have to sanatize any of the $_POST data because we're using an update method that does it for us
 		DB::instance(DB_NAME)->update_row('posts', $_POST, "WHERE post_id = ".$_POST['post_id']); // that space after 'post_id = "' is super important...
-print_r($_POST);
+
 		# Feedback to user
 		echo "Your post has been edited. <br><br> <a href='/posts/myposts'>&lt;&lt; Back</a> to your posts";
 	
