@@ -1,3 +1,7 @@
+<div class="words">Follow People:</div>
+<div class="mediumwords">Select follow or unfollow.</div>
+<div class="smallwords">Users you're following are cyan. <br>Users you're not following are in red.</div>
+<br><br>
 <form method='POST' action='/posts/p_follow'>
 
 	<? foreach($users as $user): ?>
