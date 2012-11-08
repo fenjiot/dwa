@@ -248,12 +248,18 @@ class users_controller extends base_controller {
 			DB::instance(DB_NAME)->delete('users', "WHERE user_id = '".$this->user->user_id."'");
 			
 			# Feedback to user
-			echo "Goodbye!  You know where to find us! <br><br> <a href='/users/signup'>Signup</a>";
+#			echo "Goodbye!  You know where to find us! <br><br> <a href='/users/signup'>Signup</a>";
+			
+			# Redirect to signup page
+			Router::redirect("/users/signup/");
 			
 		}
 		else {
 			# Feedback to user
-			echo "Whew!  We were a little worried there. <a href='/users/profile'>Come on</a>";	
+#			echo "Whew!  We were a little worried there. <a href='/users/profile'>Come on</a>";	
+			
+			# Redirect to index
+			Router::redirect("/");
 			
 		}
 
