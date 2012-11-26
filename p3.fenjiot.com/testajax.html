@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Name Reverser - Ajax</title>
+
+    <script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+    
+    <script type='text/javascript'>
+        
+        $(document).ready(function() {
+        
+            $('#process-btn').click(function() {
+                    
+                $.ajax({
+                    type: 'POST',
+                    url: 'process.php',
+                    success: function(response) { 
+                        $('#results').html(response);
+                    },
+                    data: {
+                        name: $('#name').val(),
+                    },
+                });
+                
+            });
+                
+        }); // end doc ready
+        
+    </script>
+
+
+</head>
+
+
+<body>
+
+    <h1>Name Reverser - Ajax</h1>
+    
+    Enter your name:<br>
+    <input type='text' name='name' id='name'>    
+    
+    <br><br>    
+    <input type='button' id='process-btn' value='Reverse it!'>
+
+    <!-- We'll put the results in this empty div -->
+    <br>
+    <div id='results'></div>
+        
+</body>
+
+</html>

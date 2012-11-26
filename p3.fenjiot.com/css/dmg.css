@@ -1,0 +1,183 @@
+* {
+	font-family:verdana;
+}
+
+#wrapper {
+	width:960px;
+	margin:0px auto;
+}
+
+h1 {	
+	text-align:center;
+	font-size:30px;
+	margin-top:25px;
+	margin-bottom:25px;
+}
+
+h2 {
+	font-family:Verdana;
+	font-size:15px;
+	margin-top:30px;
+	margin-bottom:5px;
+	border-bottom:1px dotted #ccc;
+}
+
+a:link, a:visited {
+	color: #4c4744;
+	text-decoration: none;
+	}
+	
+a:hover, a:active {
+	color: #fbb111;
+	text-decoration: none;
+	}
+
+#left_side {
+border: 1px solid blue;
+	width:425px;
+	margin-right:50px;
+	float:left;
+}
+
+#left_side_top {
+border: 1px solid purple;
+	margin-right:50px;
+	float:left;
+}
+
+#left_side_bottom {
+border: 1px solid purple;
+	margin-right:50px;
+	float:left;
+}
+
+.clear {
+	clear: both;
+}
+
+#right-side {
+border: 1px solid green;
+	width:400px;
+	float:left;
+}
+
+#right_side_top {
+border: 1px solid orange;
+	margin-right:50px;
+	float:left;
+}
+
+#right_side_bottom {
+border: 1px solid orange;
+	margin-right:50px;
+	float:left;
+}
+
+/*
+#card {
+	background-image:url('/images/cardgenerator/card-background.jpg');
+	background-repeat:no-repeat;
+	height:513px;
+	width:369px;
+	margin:0px auto;
+}
+
+
+#canvas {
+	width:338px;
+	height:469px;
+	position:relative;
+	top:33px;
+	left:16px;
+	overflow:hidden;
+}
+*/
+
+.footer {
+	clear:both;
+}
+
+
+.select_number_of_people {
+	
+}
+
+#one_person,
+#two_people,
+#three_people,
+#four_or_more_people {border: 1px solid #000000;}
+
+#number_of_people {} /* input */
+
+
+.select_number_of_drinks {
+	
+}
+
+#select_total_cocktails {} /* input */
+#select_total_shots {} /* input */
+.drink_icons {}
+
+.words {
+	font-family: bellitalic;
+}
+
+.largewords {
+	font-family: verdana;
+	font-size: 35px;
+}
+
+.drinks {
+	border: 2px solid #000000;
+	width: 30px;
+	height: 30px;
+	float: left;
+}
+
+.totals {
+	border: 2px solid #000000;
+	font-size: 25px;
+}
+
+.drinks {
+	float: left;
+}
+
+[id|="cocktail"] {
+	background-image: url('/images/dmg/cocktail_glass.png');
+	margin-bottom: 5px;
+}
+
+[id|="shot"] {
+	background-image: url('/images/dmg/shot_glass.png');
+	margin-bottom: 5px;
+}
+
+.hidden {
+	visibility:hidden;
+	display: none;
+}
+
+.shown {
+	
+}
+
+#nav_main {
+	border: 1px solid orange;
+	display: block;
+}
+
+#nav_top_left {
+	display: inline-block;
+	background-color: black;
+	color: white;
+}
+
+#menu a {
+	display: inline-block;
+}
+
+#menu a:hover { /* makes titlenav box change color when hover */
+	background: #fbb111; /* orange */
+	color: #000000;
+}

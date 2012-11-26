@@ -1,0 +1,114 @@
+* {
+	font-family:verdana;
+}
+
+#wrapper {
+	width:960px;
+	margin:0px auto;
+}
+
+h1 {	
+	text-align:center;
+	font-size:30px;
+	margin-top:25px;
+	margin-bottom:25px;
+}
+
+h2 {
+	font-family:Verdana;
+	font-size:15px;
+	margin-top:30px;
+	margin-bottom:5px;
+	border-bottom:1px dotted #ccc;
+}
+
+#left-side {
+	width:425px;
+	margin-right:50px;
+	float:left;
+}
+
+#right-side {
+	width:400px;
+	float:left;
+}
+
+#card {
+	background-image:url('/images/cardgenerator/card-background.jpg');
+	background-repeat:no-repeat;
+	height:513px;
+	width:369px;
+	margin:0px auto;
+}
+
+#canvas {
+	width:338px;
+	height:469px;
+	position:relative;
+	top:33px;
+	left:16px;
+	overflow:hidden;
+}
+
+.footer {
+	clear:both;
+}
+
+.color-choice {
+	border: 2px solid black;
+	width: 30px;
+	height: 30px;
+	float: left;
+	margin-right: 4px;
+}
+
+#red	{background-color: red;}
+#orange	{background-color: orange;}
+#yellow	{background-color: yellow;}
+#green 	{background-color: green;}
+#blue 	{background-color: blue;}
+#indigo {background-color: indigo;}
+#violet {background-color: violet;}
+#pink 	{background-color: pink;}
+#white 	{background-color: white;}
+
+.texture-choice {
+	border: 2px solid black;
+	width: 70px;
+	height: 30px;
+	float: left;
+	margin-right: 4px;
+}
+
+#texture_1 {background-image: url('/images/cardgenerator/texture_1.png');}
+#texture_2 {background-image: url('/images/cardgenerator/texture_2.png');}
+#texture_3 {background-image: url('/images/cardgenerator/texture_3.png');}
+#texture_4 {background-image: url('/images/cardgenerator/texture_4.png');}
+
+#message_in_canvas {
+	border: 0px solid #000000;
+	text-align: center;
+	font-size: 40px;
+	padding-top: 175px;
+	z-index: 999;
+}
+
+#recipient_output_in_canvas {
+	text-align: center;
+	font-size: 25px;
+	z-index: 999;
+	font-family: georgia;
+}
+
+.draggable {
+	cursor: move;
+	position: absolute; 
+	z-index: 994;
+}
+
+.new_draggable {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 994;
+}
