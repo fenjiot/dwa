@@ -3,7 +3,7 @@
 <div id="left_side">
 	<div class="one_of_four_boxes" id="left_side_top">
 		<div class="one_of_four_title" id="left_side_top_title">
-		LST-title -- Let's begin
+		LST -- Let's begin
 		</div>
 		<br>
 		<div class="one_of_four_content" id="left_side_top_content">
@@ -30,7 +30,7 @@
 	
 	<div class="one_of_four_boxes" id="left_side_bottom">
 		<div class="one_of_four_title" id="left_side_bottom_title">
-		LSB-title -- Add detail
+		LSB -- Add detail
 		</div>
 		<br>
 		<div class="one_of_four_content" id="left_side_bottom_content">
@@ -44,7 +44,7 @@
 <div id="right_side">
 	<div class="one_of_four_boxes" id="right_side_top">
 		<div class="one_of_four_title" id="right_side_top_title">
-		RST-title -- Scoreboard
+		RST -- Tally
 		</div>
 		<br>
 		<div class="one_of_four_content" id="right_side_top_content">
@@ -54,7 +54,7 @@
 	
 	<div class="one_of_four_boxes" id="right_side_bottom">
 		<div class="one_of_four_title" id="right_side_bottom_title">
-		RSB-title -- Answer
+		RSB -- Answer
 		</div>
 		<br>
 		<div class="one_of_four_content" id="right_side_bottom_content">
