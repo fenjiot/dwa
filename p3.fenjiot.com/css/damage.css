@@ -2,21 +2,22 @@
 #content {}
 
 .clear_all {clear:both};
+.clear_left {clear:left};
 
 /* Page Specific Style -- Damage */
 #left_side {
-	border:3px dotted red; 
+	border:3px solid red; 
 	float: left;
 }
 #right_side {
-	border:1px dotted pink;
+	border:2px dotted pink;
 	float:right;
 }
 
 .one_of_four_boxes {
 	border:3px solid green;
 	display: inline-block;
-	float:left;
+	float: left;
 }
 #left_side_top {}
 #left_side_bottom {}

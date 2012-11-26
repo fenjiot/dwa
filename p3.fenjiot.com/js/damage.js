@@ -108,12 +108,14 @@ var Damage = {
 	set_board: function(id_of_board, id_of_scoreboard, how_many_people, how_many_cocktails, how_many_shots) {
 	
 		console.log(id_of_board, id_of_scoreboard, how_many_people, how_many_cocktails, how_many_shots);
-	
+
 		// First, identify the board and the scoreboard objects
 		this.board      = $('#' + id_of_board);
 		this.scoreboard = $('#' + id_of_scoreboard);
 
-
+		// Make sure everything is reset
+		this.board.html("");
+		
 		// This will hold all the drinks as we load them
 		var cocktailsArr = [];
 		var shotsArr = [];
@@ -187,8 +189,8 @@ var Damage = {
 	@return void
 	-------------------------------------------------------------------------------------------------------- */	
 	detail_board: function(id_of_board, id_of_scoreboard, how_many_people, how_many_cocktails, how_many_shots) {
-	
-		// First, identify the board and the scoreboard objects
+		
+		// identify the board and the scoreboard objects
 		this.board      = $('#' + id_of_board);
 		this.scoreboard = $('#' + id_of_scoreboard);
 		
@@ -199,6 +201,29 @@ var Damage = {
 								'<div>Total drinks: ' + total_number_of_drinks + '</div><br>');
 		
 	}, // end of detail_board
+	
+	/* -------------------------------------------------------------------------------------------------------
+	@param {string} id_of_board
+	@param {string} id_of_scoreboard 
+	@param {string}    how_many_people
+	@param {string}    how_many_cocktails
+	@param {string}    how_many_shots
+	@return void
+	-------------------------------------------------------------------------------------------------------- */	
+	answer_board: function(id_of_board, id_of_scoreboard, how_many_people, how_many_cocktails, how_many_shots) {
+	
+		// First, identify the board and the scoreboard objects
+		this.board      = $('#' + id_of_board);
+		this.scoreboard = $('#' + id_of_scoreboard);
+		
+		//		
+		number_of_bottles_needed = parseInt(number_of_cocktails) + parseInt(number_of_shots);
+
+	
+		this.scoreboard.prepend('<div>Total cocktails: ' + number_of_cocktails + '</div><br>' +
+								'<div>Total shots: ' + number_of_shots + '</div><br>');
+		
+	}, // end of answer_board
 	
 	
 	

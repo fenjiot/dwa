@@ -1,4 +1,5 @@
 <!-- REMEMBER all of this is wrapped in a <div id="content"> --> 
+<h1>DMG</h1>
 <div id="left_side">
 	<div class="one_of_four_boxes" id="left_side_top">
 		<div class="one_of_four_title" id="left_side_top_title">
@@ -47,13 +48,13 @@
 		</div>
 		<br>
 		<div class="one_of_four_content" id="right_side_top_content">
-			<div id="rst_content">L</div>
+			<div id="rst_content"></div>
 		</div>
 	</div>
 	
 	<div class="one_of_four_boxes" id="right_side_bottom">
 		<div class="one_of_four_title" id="right_side_bottom_title">
-		RSB-title
+		RSB-title -- Answer
 		</div>
 		<br>
 		<div class="one_of_four_content" id="right_side_bottom_content">
