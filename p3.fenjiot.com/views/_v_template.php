@@ -16,7 +16,7 @@
 	</script>
 				
 	<!-- Global CSS -->
-<!--	<link rel="stylesheet" href="/css/master.css" type="text/css"> -->
+	<link rel="stylesheet" href="/css/damage.css" type="text/css">
 	
 	<!-- Controller Specific JS/CSS -->
 	<?php echo @$client_files; ?>

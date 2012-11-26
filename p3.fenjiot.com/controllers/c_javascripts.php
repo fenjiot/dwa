@@ -103,6 +103,28 @@ class javascripts_controller extends base_controller	{
 		
 	} // end dmg fct
 	
+	public function damage() {
+		
+		# Setup the view
+		$this->template->content 	= View::instance('v_javascripts_damage');
+		$this->template->title 		= "Drink Mix Generator";
+		
+		# Load CSS / JS
+		$client_files = Array(
+				"/css/damage.css",
+				"/js/damage.js",
+	            );
+	
+        $this->template->client_files = Utils::load_client_files($client_files);		
+		
+		# Pass data to the view
+
+		
+		# Render the view
+		echo $this->template;
+		
+	} // end dmg fct
+	
 	
 } // end of the class
 

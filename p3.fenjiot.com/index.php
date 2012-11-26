@@ -23,7 +23,7 @@
 
 # Routing
     Router::$routes = array(
-    	'/' => '/javascripts/dmg',     # default controller when "/" is requested
+    	'/' => '/javascripts/damage',     # default controller when "/" is requested
     );
     
 # Match requested uri to any routes and instantiate controller

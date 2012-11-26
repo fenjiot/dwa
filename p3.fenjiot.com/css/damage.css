@@ -1,0 +1,65 @@
+/* General Style */
+#content {}
+
+.clear_all {clear:both};
+
+/* Page Specific Style -- Damage */
+#left_side {
+	border:3px dotted red; 
+	float: left;
+}
+#right_side {
+	border:1px dotted pink;
+	float:right;
+}
+
+.one_of_four_boxes {
+	border:3px solid green;
+	display: inline-block;
+	float:left;
+}
+#left_side_top {}
+#left_side_bottom {}
+#right_side_top {}
+#right_side_bottom {}
+
+.one_of_four_title {
+	border:3px solid orange;
+	display: inline-block;
+}
+#left_side_top_title {}
+#left_side_bottom_title {}
+#right_side_top_title {}
+#right_side_bottom_title {}
+
+.one_of_four_content {
+	border:1px solid blue;
+	display: inline-block;
+}
+#left_side_top_content {}
+#left_side_bottom_content {}
+#right_side_top_content {}
+#right_side_bottom_content {}
+#lst_content{}
+#lsb_content{}
+#rst_content{}
+#rsb_content{}
+
+.words_by_inputs {}
+
+/* ---- Very Specific Styles ---- */
+
+/* left_side_top_content */
+#number_of_people {}
+#person_vs_people {}
+
+/* left_side_bottom_content */
+[id|="cocktail"] {
+border: 4px solid aqua;
+	margin-bottom: 5px;
+}
+
+[id|="shot"] {
+border: 4px solid gray;
+	margin-bottom: 5px;
+}

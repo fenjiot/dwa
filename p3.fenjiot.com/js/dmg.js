@@ -66,10 +66,17 @@ $(document).ready(function() {
 	}); // end of reset card fct		
  
 //console.log('before if: people = ' + number_of_people + '; cocktails = ' + number_of_cocktails + '; shots = ' + number_of_shots + ';');
+		
+		
+		/* Fade toggle */
+	$('.slide_toggle_control').click(function() {
+		console.log('slide');
+		$(".slide_toggle").slideToggle("slow");
+	});
 			
 }); // end doc ready; do not delete this!
 		
-		
+
 
 var Dmg = {
 
@@ -127,6 +134,9 @@ var Dmg = {
 		this.board.html(peopleStr);
 
 */	
+		// Inject the Customize button
+		this.board.prepend("<input type='button' id='customize' value='Customize'><br><br>");
+
 		
 	/* SHOTS */
 		// Loop for how many shots we have
@@ -168,7 +178,7 @@ var Dmg = {
 		// Have to use "DMG" instead of "this" because in this context "this" is referring to the event handler, not the class
 		// Also, have to use "on" method instead of "click" because we'll be adding and removing the "clickable" class and will need to re-register the listener
 		// See http://api.jquery.com/on/ for more details
-		$('.drinks').on('click', function() {
+		$('#customize').on('click', function() {
 			Dmg.choose_a_drink($(this));
 		});
 		

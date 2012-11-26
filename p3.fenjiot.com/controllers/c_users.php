@@ -10,7 +10,7 @@ class users_controller extends base_controller {
 	
 	public function index() {
 
-		Router::redirect("/javascripts/dmg");
+		Router::redirect("/");
 	
 	} // end index fct
 	
