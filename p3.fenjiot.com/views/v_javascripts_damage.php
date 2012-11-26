@@ -63,5 +63,7 @@
 	</div>
 </div>
 
-
 <div class="clear_all"></div>
+
+<div>ABOUT: the idea is to hook up database and be able to pick various recipes and figure out how much of each ingredient you'll need depending on 
+		 	how many people are over, how much they are going to drink, and which kind of drinks they want</div>

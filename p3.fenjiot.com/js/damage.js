@@ -216,12 +216,56 @@ var Damage = {
 		this.board      = $('#' + id_of_board);
 		this.scoreboard = $('#' + id_of_scoreboard);
 		
-		//		
-		number_of_bottles_needed = parseInt(number_of_cocktails) + parseInt(number_of_shots);
-
+		/* since I don't have a DB actually set up, we are going to use the following:
+		 	-- recipe for one cocktail:
+		 			- 3 shots	gin
+		 			- 1 shot	vodka
+		 			- 1/2 shot	vermouth
+		 			
+		 	-- 1 shot = 44 mL 
+		 	
+		 	idea is to hook up database and be able to pick various recipes and figure out how much of each ingredient you'll need depending on 
+		 	how many people are over, how much they are going to drink, and which kind of drinks they want
+		 	
+		 	so if there were 4 ppl, 4 cocktails, 3 shots of vodka...
+		 	
+		 	amt_of_people = 4
+		 	amt_of_cocktail_type = 4
+		 	amt_of_shot_type = 3
+		 	
+		 	this cocktail has 3 ingredients, so
+		 	
+		 	number_of_ingredients = 3 - 1
+		 	
+		 	ingredient[0] = 3
+		 	ingredient[1] = 1
+		 	ingredient[2] = 0.5
+		 	
+		 	
+		*/
+		
+		// start off with empty arrays
+		ingredientArry = '',
+		ingredientStr = '',
+		
+		// popluate ingredientArry, get values for amt_of_cocktail_type, amt_of_ingredientArry, etc
+		
+		// calculations
+		for(var i = 0; i < number_of_ingredients; i++) {
+			ingredientArry[i] = amt_of_cocktail_type * amt_of_ingredient[i];
+		};
+		
+		for(var ingredient in ingredientArry) {
+			ingredientStr = ingredientStr + ingredientArr[ingredient];
+		};
 	
-		this.scoreboard.prepend('<div>Total cocktails: ' + number_of_cocktails + '</div><br>' +
-								'<div>Total shots: ' + number_of_shots + '</div><br>');
+		// adjust string
+	
+		// load string
+		
+
+
+
 		
 	}, // end of answer_board
 	
