@@ -151,11 +151,24 @@ class users_controller extends base_controller {
 		
 		# If user is blank, they're not logged in, show message and send to login page
 		if(!$this->user) {
-			echo "Members only. <a href='/users/login'>Login</a>";
+//			echo "Members only. <a href='/users/login'>Login</a>";
 		
 			# Return will force this method to exit here so the rest of 
 			# the code won't be executed and the profile view won't be displayed.
-			return false;
+//			return false;			
+//			Do GUEST signin instead
+			$user_name = 'Guest';
+
+			# Setup view
+			$this->template->content 	= View::instance('v_users_profile');
+			$this->template->title		= "Guest -- Sign up and Login";	
+			
+			# Pass information to the view
+			$this->template->content->user_name = $user_name;
+			$this->template->content->error = $error;
+			
+			# Render template
+			echo $this->template;
 			
 		}
 		else {
