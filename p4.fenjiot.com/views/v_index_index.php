@@ -27,3 +27,7 @@
 	<? endif; ?>
 	
 </div>
+
+<!-- eventually REMOVE CODE BELOW THIS COMMENT temp to show about page till something gets built -->
+<? include("v_index_about.php")?>
+<!-- eventually REMOVE CODE ABOVE THIS COMMENT temp to show about page till something gets built -->

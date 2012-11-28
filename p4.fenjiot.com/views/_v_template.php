@@ -16,7 +16,7 @@
 	</script>
 				
 	<!-- Global CSS -->
-	<link rel="stylesheet" href="/css/damage.css" type="text/css">
+	<link rel="stylesheet" href="/css/style.css" type="text/css">
 	
 	<!-- Controller Specific JS/CSS -->
 	<?php echo @$client_files; ?>
@@ -24,35 +24,28 @@
 </head>
 
 <body>
-	<!-- Menu for users that are logged in -->
-	<? if($user): ?>
-
-		<div id="nav_main">
-			
-			<div id="nav_top_left"> 
-				<a href="/">p4.fenjiot</a>		
-			</div>
+	<div id="nav_main">
 		
+		<div id="nav_top_left"> 
+			<a href="/">p4.fenjiot</a>		
+		</div>
+	
 		<div id="menu">
-			<span>
+			<? if($user): ?>
+			<!-- Menu for users that are logged in -->
 				Signed in as <a href="/users/profile"><?=$user->first_name?></a> | 
 				<a href="/users/logout">Logout</a> | 
 				<a href="/users/delete">Erase <?=$user->first_name?> </a> | 
-				<a href="/about">About</a>
-			</span>
+			<? else: ?>
+			<!-- Menu for those not logged in -->
+				<span class="words">
+					<a href="/users/signup">Sign Up</a> | 
+					<a href="/users/login">Login</a> |
+				</span> 
+			<? endif; ?>				
+			<a href="/about">About</a>
 		</div>
-</div>
-
-		
-	<!-- Menu for those not logged in -->
-	<? else: ?>
-		<div class="words">
-			<a href="/users/signup">Sign Up</a> <span class="strong"> | </span>
-			<a href="/users/login">Login</a>
-		</div>
-	<? endif; ?>
-	
-	</div>
+	</div> 
 	
 	<br>
 	

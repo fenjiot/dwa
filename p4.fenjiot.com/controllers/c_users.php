@@ -157,6 +157,18 @@ class users_controller extends base_controller {
 			# the code won't be executed and the profile view won't be displayed.
 			return false;
 			
+			# Setup view
+			$this->template->content 	= View::instance('v_users_profile');
+			$this->template->title		= "Profile of ".$this->user->first_name;	
+			
+			# Pass information to the view
+			$this->template->content->user_name = $user_name;
+			$this->template->content->error = $error;
+			
+			# Render template
+			echo $this->template;
+			
+			
 		}
 		else {
 			# Setup view

@@ -125,6 +125,35 @@ class javascripts_controller extends base_controller	{
 		
 	} // end dmg fct
 	
+	public function reverser() {
+		
+		# Setup the view
+		$this->template->content	= View::instance('v_javascripts_reverser');
+		$this->template->title		= "Reverser";
+		
+		# Load  CSS / JS
+		$client_files = Array(
+				"/js/reverser.js",
+				);
+		
+		$this->template->client_files = Utils::load_client_files($client_files);
+		
+		# Render the view
+		echo $this->template;
+		
+	} // end reverser fct
+	
+	public function process() {
+		
+		# Setup the view
+		$this->template->content	= View::instance('v_javascripts_process');
+		$this->template->title		= "Process";
+		
+		# Render the view
+		echo $this->template;
+		
+	} // end reverser fct
+	
 	
 } // end of the class
 
