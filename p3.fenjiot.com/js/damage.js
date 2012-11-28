@@ -210,11 +210,11 @@ var Damage = {
 	@param {string}    how_many_shots
 	@return void
 	-------------------------------------------------------------------------------------------------------- */	
-	answer_board: function(id_of_board, id_of_scoreboard, how_many_people, how_many_cocktails, how_many_shots) {
+//	answer_board: function(id_of_board, id_of_scoreboard, how_many_people, how_many_cocktails, how_many_shots) {
 	
 		// First, identify the board and the scoreboard objects
-		this.board      = $('#' + id_of_board);
-		this.scoreboard = $('#' + id_of_scoreboard);
+//		this.board      = $('#' + id_of_board);
+//		this.scoreboard = $('#' + id_of_scoreboard);
 		
 		/* since I don't have a DB actually set up, we are going to use the following:
 		 	-- recipe for one cocktail:
@@ -245,19 +245,19 @@ var Damage = {
 		*/
 		
 		// start off with empty arrays
-		ingredientArry = '',
-		ingredientStr = '',
+//		ingredientArry = '',
+//		ingredientStr = '',
 		
 		// popluate ingredientArry, get values for amt_of_cocktail_type, amt_of_ingredientArry, etc
 		
 		// calculations
-		for(var i = 0; i < number_of_ingredients; i++) {
-			ingredientArry[i] = amt_of_cocktail_type * amt_of_ingredient[i];
-		};
+//		for(var i = 0; i < number_of_ingredients; i++) {
+//			ingredientArry[i] = amt_of_cocktail_type * amt_of_ingredient[i];
+//		};
 		
-		for(var ingredient in ingredientArry) {
-			ingredientStr = ingredientStr + ingredientArr[ingredient];
-		};
+//		for(var ingredient in ingredientArry) {
+//			ingredientStr = ingredientStr + ingredientArr[ingredient];
+//		};
 	
 		// adjust string
 	
@@ -267,7 +267,7 @@ var Damage = {
 
 
 		
-	}, // end of answer_board
+//	}, // end of answer_board
 	
 	
 	
