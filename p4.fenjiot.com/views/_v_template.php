@@ -24,12 +24,10 @@
 </head>
 
 <body>
-	<div id="nav_main">
-		
-		<div id="nav_top_left"> 
-			<a href="/">p4.fenjiot</a>		
-		</div>
-	
+	<header class="main" role="banner">
+		<div class="head_logo">
+			<a href="/">p4.fenjiot</a>
+		</div>	
 		<div id="menu">
 			<? if($user): ?>
 			<!-- Menu for users that are logged in -->
@@ -46,6 +44,7 @@
 			<a href="/about">About</a>
 		</div>
 	</div> 
+	</header>
 	
 	<br>
 	
