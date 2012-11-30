@@ -60,6 +60,9 @@
 			<li class="sub_box2">- Site 4 -- us.moo.com -- order interface<br>
 				<a href="http://us.moo.com"><img src="/images/us.moo.com.png" alt="us.moo.com" title="us.moo.com"></a>
 			</li>
+			<li class="sub_box2">- Site 5 -- aetherapparel.com -- general layout<br>
+				<a href="http://aetherapparel.com"><img src="/images/aetherapparel.com.png" alt="aetherapparel.com" title="aetherapparel.com"></a>
+			</li>
 		</ul>
 		
 	<div class="clear"> </div>
