@@ -49,16 +49,16 @@
 	<h2 id="inspirational">Inspirational examples</h2>
 		<ul>
 			<li class="sub_box2">- Site 1 -- oipolloi.com -- general layout and interaction<br>
-				<img src="/images/oipolloi.com.png" alt="oipolloi.com" title="oipolloi.com">
+				<a href="http://oipolloi.com"><img src="/images/oipolloi.com.png" alt="oipolloi.com" title="oipolloi.com"></a>
 			</li>
 			<li class="sub_box2">- Site 2 -- bureauoftrade.com -- neat javascript interactions<br>
-				<img src="/images/bureauoftrade.com.png" alt="bureauoftrade.com" title="bureauoftrade.com">
+				<a href="http://bureauoftrade.com"><img src="/images/bureauoftrade.com.png" alt="bureauoftrade.com" title="bureauoftrade.com"></a>
 			</li>
 			<li class="sub_box2">- Site 3 -- hickorees.com -- general product layout<br>
-				<img src="/images/hickorees.com.png" alt="hickorees.com" title="hickorees.com">
+				<a href="http://hickorees.com"><img src="/images/hickorees.com.png" alt="hickorees.com" title="hickorees.com"></a>
 			</li>
 			<li class="sub_box2">- Site 4 -- us.moo.com -- order interface<br>
-				<img src="/images/us.moo.com.png" alt="us.moo.com" title="us.moo.com">
+				<a href="http://us.moo.com"><img src="/images/us.moo.com.png" alt="us.moo.com" title="us.moo.com"></a>
 			</li>
 		</ul>
 		
