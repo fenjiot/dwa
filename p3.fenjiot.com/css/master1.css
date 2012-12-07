@@ -176,4 +176,8 @@ h3 {
 .color_link {
 	background-color: aqua;
 }
+
+.other {
+	opacity:0.5;
+}
 /* END Custom code for p3 */

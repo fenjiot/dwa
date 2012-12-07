@@ -46,6 +46,10 @@
 			<? endif; ?>				
 			<a href="/javascripts/damage"><span id="damage">DMG</span></a>  |  
 			<a href="/index/about"><span id="about">About</span></a>
+			<div class="other"> -- Other Javascript apps: --<br>
+				<a href="/javascripts/cardgenerator"><span id="cardgenerator">Card Generator</span></a>  | 
+				<a href="/javascripts/memorygame"><span id="memorygame">Memory Game</span></a>
+			</div>
 		</div>
 	
 	</div>
