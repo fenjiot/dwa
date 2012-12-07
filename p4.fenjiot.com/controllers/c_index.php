@@ -41,6 +41,25 @@ class index_controller extends base_controller {
 
 	} // end of about fct
 	
+	public function raerden() {
+	
+		# Setup view
+		$this->template->content 	= View::instance('v_index_raerden');
+		$this->template->title		= "Project -- Raerden";
+		
+		# If this view needs any JS or CSS files, add their paths to this array so they will get loaded in the head
+			$client_files = Array(
+						"/css/raerden.css",
+						"/js/raerden.js",
+	                    );
+	    
+	    	$this->template->client_files = Utils::load_client_files($client_files);
+		
+		# Render template
+		echo $this->template;
+
+	} // end of raerden fct
+	
 	
 		
 } // end class

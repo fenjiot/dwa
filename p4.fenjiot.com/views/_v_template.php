@@ -18,6 +18,9 @@
 	<!-- Global CSS -->
 	<link rel="stylesheet" href="/css/style.css" type="text/css">
 	
+	<!-- Global JS -->
+	<script src="/js/scripts.js"></script>
+	
 	<!-- Controller Specific JS/CSS -->
 	<?php echo @$client_files; ?>
 	
@@ -51,6 +54,17 @@
 	<div id="content">
 		<?=$content;?> 
 	</div>
+
+<footer id="foot">
+	Eventual MAP
+	<div class="hide" id="footer_box">
+	something something something<br>
+	somethingeaoifn wai wa<br>
+	ouwbfouabcoauba<br>
+	ouwfoauwbfoawubo<br>
+	okay
+	</div>
+</footer>	
 	
 </body>
 </html>

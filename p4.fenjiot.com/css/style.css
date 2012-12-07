@@ -24,6 +24,17 @@ p {
 	font-size: 15px;
 }
 
+footer {
+	background-color: #434343;
+	padding: 5px 5px 5px 30px;
+	font-family: 'helvetica neue'; 
+}
+
+#footer_box {
+
+	margin: 5px 0 0 0; 
+}
+
 .main {
 /*	position: absolute;  maybe in the future */
 }
@@ -98,4 +109,12 @@ border: 1px solid #606260;
 
 .clear {
 	clear: both;
+}
+
+.hide {
+	display: none;
+}
+
+.show {
+	
 }

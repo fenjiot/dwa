@@ -24,6 +24,7 @@
 # Routing
     Router::$routes = array(
     	'/' => '/javascripts/damage',     # default controller when "/" is requested
+    	'/' => '/index/about',
     );
     
 # Match requested uri to any routes and instantiate controller
