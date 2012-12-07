@@ -107,6 +107,7 @@ class javascripts_controller extends base_controller	{
 		
 		# Load CSS / JS
 		$client_files = Array(
+				"/css/master1.css",
 				"/css/damage.css",
 				"/js/damage.js",
 	            );
