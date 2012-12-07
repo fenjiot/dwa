@@ -58,7 +58,7 @@ $(document).ready(function() {
 		$('#shot_vs_shots').html(shotz);
 		console.log(number_of_shots + ' ' + shotz);
 	});
-
+	
 	$('#move_to_phase_two').click(function() {
 		if(number_of_people != 0 || null && number_of_cocktails != 0 || null && number_of_shots != 0 || null) {
 			console.log('going to phase two');
@@ -73,6 +73,12 @@ $(document).ready(function() {
 			console.log('not ready');
 		}
 	});
+
+	$('#rsb_content').click(function() {
+		window.location.reload()
+		console.log('restart');
+	});
+
 
 });	// end of document ready fct
 
@@ -196,11 +202,12 @@ var Damage = {
 		
 		total_number_of_drinks = parseInt(number_of_cocktails) + parseInt(number_of_shots);
 	
-		this.scoreboard.prepend('<div>Total cocktails: ' + number_of_cocktails + '</div><br>' +
+		this.scoreboard.html('<div>Total cocktails: ' + number_of_cocktails + '</div><br>' +
 								'<div>Total shots: ' + number_of_shots + '</div><br>' +
 								'<div>Total drinks: ' + total_number_of_drinks + '</div><br>');
 		
 	}, // end of detail_board
+	
 	
 	/* -------------------------------------------------------------------------------------------------------
 	@param {string} id_of_board

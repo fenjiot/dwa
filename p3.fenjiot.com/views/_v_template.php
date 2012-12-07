@@ -44,8 +44,8 @@
 					<a href="/users/login">Login</a> |
 				</span> 
 			<? endif; ?>				
-			<a href="/javascripts/damage">DMG</a>  |  
-			<a href="/index/about">About</a>
+			<a href="/javascripts/damage"><span id="damage">DMG</span></a>  |  
+			<a href="/index/about"><span id="about">About</span></a>
 		</div>
 	
 	</div>

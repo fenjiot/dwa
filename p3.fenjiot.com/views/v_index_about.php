@@ -1,6 +1,6 @@
 <div id="cont">
 	<div class="box" id="intro">
-		<h2>Project 3 -- title: Dmg</h2>
+		<h2><a href="/javascripts/damage">Project 3 -- title: Dmg</a></h2>
 		<div>
 			<h3>Description:</h3>
 			
