@@ -59,7 +59,7 @@
 		</div>
 		<br>
 		<div class="one_of_four_content" id="right_side_bottom_content">
-			<div id="rsb_content">RESTART</div>
+			<div id="rsb_content">&nbsp;RESTART&nbsp;</div>
 		</div>
 	</div>
 
