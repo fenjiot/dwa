@@ -1,10 +1,17 @@
+ul {
+	list-style-type: none;
+	text-decoration: none;
+	margin: 0px;
+	padding: 0px;
+} /* remove all style for unordered lists */
+
 #container {
 border: 1px solid red;
 	width: 1012px;
 	height: 1000px;
 }
 
-.clear {clear:both;}
+.clear {clear: both;}
 
 header {
 border: 1px solid green;
@@ -27,12 +34,25 @@ border: 1px solid yellow;
 	width: 1008px;
 	height: auto;
 }
+
+#top_logo {
+	background: url(/images/raerden/RaerdenLogo_129w_47l.jpg), no-repeat;
+	display: block;
+	width: 129px;
+	height: 47px;
+	overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+}
+
 .col-left {
 border: 1px solid blue;
 	width: 1006px; /* w; w = x + y + z */ /* must be 1006 for now bc of the 1px borders on col-1,2,3; change to 1000px later */
 	height: auto;
 	
+	
 }
+
 .col-1 {
 border: 1px solid green;
 	width: 146px; /* x; w = x + y + z */
@@ -41,14 +61,53 @@ border: 1px solid green;
 	margin: 0px;
 	padding: 0px;
 }
+
+#main_nav {
+border: 1px solid brown;
+	position: fixed; /* fix in position it loads. Assuming this was set up correctly, it would be in the right place at start instead of offset right now */ 
+	width: 146px; /* actually want to inherit from .col-1 */
+	font-family: 'RobotoLight';
+	font-size: 10px;
+	text-transform: uppercase;
+}
+
+#main_nav li {
+	padding: 10px;
+	float: none; /* need to negate earlier float inherited from .col-1 */
+}
+
 .col-2 {
 border: 1px solid aqua;
 	width: 236px; /* y; w = x + y + z */
-	height: 1000px; /* variable, but set for now becasue no content in div yet */
+	height: auto; /* variable, but set for now becasue no content in div yet */
 	float: left;
 	margin: 0px;
 	padding: 0px;
 }
+
+#bespoke {
+	font-family: 'RobotoRegular';
+	font-size: 14px;
+	text-transform: uppercase;
+}
+
+#bespoke h3 {
+	font-family: 'RobotoThin';
+	font-size: 21px;
+	text-transform: uppercase;
+}
+
+#prototypes {
+	font-family: 'RobotoLight';
+	font-size: 14px;
+}
+
+#prototypes li {
+	padding: 10px;
+	float: none; /* need to negate earlier float inherited from .col-2 */
+	text-transform: uppercase;
+}
+
 .col-3 {
 border: 1px solid orange;
 	width: 618px; /* z; w = x + y + z */
@@ -59,10 +118,5 @@ border: 1px solid orange;
 
 footer {
 border: 1px solid violet;
-}
-
-#main_nav {
-	border: 1px solid brown;
-	position: fixed; /* fix in position it loads. Assuming this was set up correctly, it would be in the right place at start instead of offset right now */ 
-	width: 146px; /* actually want to inherit from .col-1 */
+	clear: both;
 }

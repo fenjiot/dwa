@@ -12,7 +12,7 @@
 	<div class="clear"> </div>
 	
 	<h2 id="project_title">Project title:</h2>
-		<p>Raerden</p>
+		<a href="/raerden" title="Raerden" alt="Raerden">Raerden</a>
 	
 	<br>
 	
