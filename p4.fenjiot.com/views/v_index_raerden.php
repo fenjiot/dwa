@@ -1,17 +1,15 @@
-<div id="container">
-	<div class="col-mask">
-		<div class="col-mid">
-			<a href="/raerden" id="top_logo" title="Raerden" alt="Raerden">Raerden</a>
-			<div class="col-left">
-				
+<div id="container">I am the container
+	<div class="col-mask"> I am col-mask
+		<div class="col-mid">I am col-mid
+			<div class="col-left">I am col-left		
 				<div class="col-1">I am col-1
-					<div id="main_nav">
+					<div id="main_nav">I am main_nav
 						<ul>
-							<li><a href="#home">Home</a></li>
+							<li><a href="#raerden" id="top_logo" title="Raerden" alt="Raerden"><img src="/images/raerden/RaerdenLogo_626w_202l.png"></a></li>
 							<li><a href="#bespoke">Bespoke</a></li>
 							<li><a href="#prototypes">Prototypes</a></li>
 							<li><a href="#history_and_philosophy">History & Philosophy</a></li>
-							<li><a href="#aesthetic_consciouness">Aesthetic Consciousness</a></li>
+							<li><a href="#aesthetic_consciouness">Æsthetic Consciousness</a></li>
 							<li><a href="#connect">Connect</a></li>
 						</ul>
 					</div><!-- end main-nav div -->
