@@ -56,7 +56,7 @@ border: 1px solid green;
 border: 1px solid brown;
 	position: fixed; /* fix in position it loads. Assuming this was set up correctly, it would be in the right place at start instead of offset right now */ 
 	width: 146px; /* actually want to inherit from .col-1 */
-	font-family: 'RobotoLight';
+	font-family: 'RobotoRegular';
 	font-size: 10px;
 	text-transform: uppercase;
 }
@@ -68,7 +68,7 @@ border: 1px solid brown;
 
 #main_nav a {color: #acacac;}
 
-#main_nav a:link, #main_nav a:visited {background-color: white; color: #071844;}
+#main_nav a:link, #main_nav a:visited {background-color: none; color: #071844;}
 #main_nav a:hover {background-color: white; color: #acacac;}
 #main_nav a:active {background-color: aqua;}
 
@@ -101,19 +101,23 @@ border: 1px solid aqua;
 
 #bespoke {
 	font-family: 'RobotoRegular';
-	font-size: 14px;
+	font-size: 12px;
 	text-transform: uppercase;
 }
 
 #bespoke h3 {
 	font-family: 'RobotoThin';
 	font-size: 21px;
-	text-transform: uppercase;
+}
+
+#bespoke p {
+	font-family: 'RobotoRegular';
+	font-size: 12px;
 }
 
 #prototypes {
-	font-family: 'RobotoLight';
-	font-size: 14px;
+	font-family: 'RobotoRegular';
+	font-size: 12px;
 }
 
 #prototypes li {

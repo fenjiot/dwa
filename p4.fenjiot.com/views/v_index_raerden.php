@@ -8,8 +8,8 @@
 							<li><a href="#raerden" id="top_logo" title="Raerden" alt="Raerden"><img src="/images/raerden/RaerdenLogo_626w_202l.png"></a></li>
 							<li><a href="#bespoke">Bespoke</a></li>
 							<li><a href="#prototypes">Prototypes</a></li>
-							<li><a href="#history_and_philosophy">History & Philosophy</a></li>
-							<li><a href="#aesthetic_consciouness">Æsthetic Consciousness</a></li>
+							<li><a href="#philosophy">Philosophy</a></li>
+							<li><a href="#aesthetic">Æsthetic</a></li>
 							<li><a href="#connect">Connect</a></li>
 						</ul>
 					</div><!-- end main-nav div -->
@@ -52,13 +52,13 @@
 						
 					</div> <!-- end prototypes div -->
 					
-					<div id="history_and_philosophy">
+					<div id="philosophy">
 						
-					</div> <!-- end history_and_philosophy div -->
+					</div> <!-- end philosophy div -->
 					
-					<div id="aesthetic_consciouness">
+					<div id="aesthetic">
 						
-					</div> <!-- end aesthetics_consciouness div -->
+					</div> <!-- end aesthetic div -->
 					
 					<div id="connect">
 						
