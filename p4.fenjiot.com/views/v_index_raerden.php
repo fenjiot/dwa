@@ -2,10 +2,11 @@
 	<div class="col-mask"> I am col-mask
 		<div class="col-mid">I am col-mid
 			<div class="col-left">I am col-left		
+				
 				<div class="col-1">I am col-1
 					<div id="main_nav">I am main_nav
 						<ul>
-							<li><a href="#raerden" id="top_logo" title="Raerden" alt="Raerden"><img src="/images/raerden/RaerdenLogo_626w_202l.png"></a></li>
+							<li><a href="#home" id="top_logo" title="Raerden" alt="Raerden"><img src="/images/raerden/RaerdenLogo_626w_202l.png"></a></li>
 							<li><a href="#bespoke">Bespoke</a></li>
 							<li><a href="#prototypes">Prototypes</a></li>
 							<li><a href="#philosophy">Philosophy</a></li>
@@ -16,7 +17,8 @@
 				</div><!-- end col-1 div -->
 				
 				<div class="col-2">I am col-2
-					<div id="home"> image slide show
+					<div id="home" class="slideshow">
+					<img src="/images/raerden/RaerdenSlideShow_image1_836w_531l-01.png">
 						
 					</div> <!-- end home div -->
 					
@@ -53,7 +55,7 @@
 					</div> <!-- end prototypes div -->
 					
 					<div id="philosophy">
-						
+
 					</div> <!-- end philosophy div -->
 					
 					<div id="aesthetic">
@@ -61,13 +63,25 @@
 					</div> <!-- end aesthetic div -->
 					
 					<div id="connect">
-						
+						truffle
 					</div> <!-- end connect div -->
+					
 				</div> <!-- end col-2 div -->	
 				
 				<div class="col-3">I am col-3</div>
-				<div class="clear">........................</div> <!-- clear! -->
-			</div>
-		</div>
-	</div>
-</div>
+				
+				<div class="clear">CLEAR! col-left</div> <!-- clear! -->
+				
+			</div><!-- end col-left -->
+			
+			<div class="clear">CLEAR! .col-mid</div> <!-- clear! -->
+			
+		</div><!-- end col-mid -->
+		
+		<div class="clear">CLEAR! .col-mask</div> <!-- clear! -->
+		
+	</div><!-- end col-mask -->
+	
+	<div class="clear">CLEAR! #container</div> <!-- clear! -->
+	
+</div><!-- end container -->

@@ -8,7 +8,7 @@ ul {
 #container {
 border: 1px solid red;
 	width: 1012px;
-	height: 1000px;
+	height: auto; /* NOTE: YOU ARE GOING TO WANT TO MAKE ALMOST ALL THE HEIGHTS AUTO TO KEEP THEM FLEXIBLE */
 }
 
 .clear {clear: both;}
@@ -46,7 +46,7 @@ border: 1px solid blue;
 .col-1 {
 border: 1px solid green;
 	width: 146px; /* x; w = x + y + z */
-	height: 1000px; /* variable, but set for now becasue no content in div yet */
+	height: 1000px; /* variable, but set for now becasue no content in div yet; It probably isn't going to matter since the content here will be fixed (probably) */
 	float: left;
 	margin: 0px;
 	padding: 0px;

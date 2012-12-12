@@ -54,9 +54,10 @@
 	
 	<div id="content">
 		<?=$content;?> 
+		<div class="clear"> CLEAR! #content</div>
 	</div>
 
-<footer id="foot">
+<footer id="foot" class="clear">
 	Eventual MAP
 	<div class="hide" id="footer_box">
 	something something something<br>
