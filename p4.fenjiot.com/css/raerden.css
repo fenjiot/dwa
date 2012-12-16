@@ -1,3 +1,7 @@
+header, body, footer {
+	font-family: 'RobotoRegular', sans-serif;
+}
+
 ul {
 	list-style-type: none;
 	text-decoration: none;
@@ -56,7 +60,7 @@ border: 1px solid green;
 border: 1px solid brown;
 	position: fixed; /* fix in position it loads. Assuming this was set up correctly, it would be in the right place at start instead of offset right now */ 
 	width: 146px; /* actually want to inherit from .col-1 */
-	font-family: 'RobotoRegular';
+	font-family: 'RobotoRegular' ,sans-serif;
 	font-size: 10px;
 	text-transform: uppercase;
 }
@@ -100,23 +104,23 @@ border: 1px solid aqua;
 }
 
 #bespoke {
-	font-family: 'RobotoRegular';
+	font-family: 'RobotoRegular' ,sans-serif;
 	font-size: 12px;
 	text-transform: uppercase;
 }
 
 #bespoke h3 {
-	font-family: 'RobotoThin';
+	font-family: 'RobotoThin' ,sans-serif;
 	font-size: 21px;
 }
 
 #bespoke p {
-	font-family: 'RobotoRegular';
+	font-family: 'RobotoRegular' ,sans-serif;
 	font-size: 12px;
 }
 
 #prototypes {
-	font-family: 'RobotoRegular';
+	font-family: 'RobotoRegular' ,sans-serif;
 	font-size: 12px;
 }
 
@@ -138,3 +142,33 @@ footer {
 border: 1px solid violet;
 	clear: both;
 }
+
+/* sytled for v_users_signup */
+.module {
+	border: 1px solid red;
+}
+.field-wrapper {
+	float: left;
+}
+.module .header {
+	font-size: 200%;
+	text-transform: uppercase;	
+}
+.module .header p {
+	font-size: 50%;
+}
+.module label {
+	text-transform: uppercase;
+}
+
+.module #button {
+	color: #FFFFFF;
+	font-family: 'RobotoBold', sans-serif;
+	text-transform: uppercase;
+	background-color: #DD2925; 
+	border: none;
+	border-radius: 3px;
+	width: 100px;
+	height: 25px;
+}
+

@@ -49,9 +49,9 @@ class index_controller extends base_controller {
 		
 		# If this view needs any JS or CSS files, add their paths to this array so they will get loaded in the head
 			$client_files = Array(
-						"/css/font-face.css", // probably has to load before raerden.css to reference @font-face
-						"/css/raerden.css",
-						"/js/raerden.js",
+						"/js/responsiveslides.min.js",
+						"/js/responsive-slides.js",
+						"/css/responsive-slides.css",
 	                    );
 	    
 	    	$this->template->client_files = Utils::load_client_files($client_files);

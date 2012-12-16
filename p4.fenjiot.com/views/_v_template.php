@@ -16,10 +16,11 @@
 	</script>
 				
 	<!-- Global CSS -->
-	<link rel="stylesheet" href="/css/style.css" type="text/css">
+	<link rel="stylesheet" href="/css/font-face.css" type="text/css">
+	<link rel="stylesheet" href="/css/raerden.css" type="text/css">
 	
 	<!-- Global JS -->
-	<script src="/js/scripts.js"></script>
+	<script src="/js/raerden.js"></script>
 	
 	<!-- Controller Specific JS/CSS -->
 	<?php echo @$client_files; ?>
