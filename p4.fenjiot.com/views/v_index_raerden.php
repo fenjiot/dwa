@@ -38,8 +38,26 @@
 												
 						</div> <!-- end home div -->
 						
+						<div class="col-2-sub1">I am col-2-sub1
+							<div class="submenu1">
+							<ul>
+								<li>tote bags</li>
+								<li>handbags</li>
+								<li>backpacks</li>
+								<li>accessories</li>
+							</ul>
+							</div> <!-- end .submenu1 -->
+						</div> <!-- end .col-2-sub1 -->
+						
+						<div class="col-2-sub2">I am col-2-sub2
+						</div> <!-- end .col-2-sub2 -->
+					
 						<div class="col-2-sub3">I am col-2-sub3
 							<div id="bespoke">
+								
+								<br>
+								<br>
+								
 								<h3>Custom and bespoken goods</h3>
 								
 								<p>Rærden specializes in making custom and bespoken goods</p>
@@ -74,6 +92,10 @@
 							</div> <!-- end bespoke div -->
 		
 							<div id="prototypes">
+							
+								<br>
+								<br>
+							
 								<ul>
 									<li>tote bags</li>
 									<li>handbags</li>

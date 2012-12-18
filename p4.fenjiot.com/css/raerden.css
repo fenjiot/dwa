@@ -132,21 +132,39 @@ border: 1px solid aqua;
 
 .col-2-sub1 {
 	border: 1px solid green;
-	width: 618px; /* ys1; w = x + y + z */
+	width: 116px; /* ys1; y = ys1 + ys2 + ys3 */
 	height: 1000px; /* variable, but set for now becasue no content in div yet */
 	float: left;
+}
+
+.slideshow {
+border: 1px solid orange;
+	max-height: 538px;
+	overflow: hidden;
+	background: center;
 }
 
 .col-2-sub2 {
 	border: 1px solid blue;
-	width: 618px; /* ys2; w = x + y + z */
+	width: 116px; /* ys2; y = ys1 + ys2 + ys3 */
 	height: 1000px; /* variable, but set for now becasue no content in div yet */
 	float: left;
 }
 
+.submenu1 {
+	font-family: 'RobotoRegular' ,sans-serif;
+	font-size: 12px;
+}
+
+.submenu1 li {
+	padding: 10px;
+	float: none; /* need to negate earlier float inherited from .col-2 */
+	text-transform: uppercase;
+}
+
 .col-2-sub3 {
 border: 1px solid orange;
-	width: 618px; /* ys3; w = x + y + z */
+	width: 618px; /* ys3; y = ys1 + ys2 + ys3 */
 	height: 1000px; /* variable, but set for now becasue no content in div yet */
 	float: left;
 }
