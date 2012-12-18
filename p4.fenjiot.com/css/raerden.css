@@ -41,7 +41,7 @@ border: 1px solid yellow;
 
 .col-left {
 border: 1px solid blue;
-	width: 1006px; /* w; w = x + y + z */ /* must be 1006 for now bc of the 1px borders on col-1,2,3; change to 1000px later */
+	width: 1006px; /* w; w = x + y */ /* must be 1006 for now bc of the 1px borders on col-1,2,3; change to 1000px later */
 	height: auto;
 	
 	
@@ -49,7 +49,7 @@ border: 1px solid blue;
 
 .col-1 {
 border: 1px solid green;
-	width: 146px; /* x; w = x + y + z */
+	width: 146px; /* x; w = x + y */
 	height: 1000px; /* variable, but set for now becasue no content in div yet; It probably isn't going to matter since the content here will be fixed (probably) */
 	float: left;
 	margin: 0px;
@@ -96,7 +96,7 @@ border: 1px solid brown;
 
 .col-2 {
 border: 1px solid aqua;
-	width: 236px; /* y; w = x + y + z */
+	width: 856px; /* y; w = x + y */
 	height: auto; /* variable, but set for now becasue no content in div yet */
 	float: left;
 	margin: 0px;
@@ -130,9 +130,23 @@ border: 1px solid aqua;
 	text-transform: uppercase;
 }
 
-.col-3 {
+.col-2-sub1 {
+	border: 1px solid green;
+	width: 618px; /* ys1; w = x + y + z */
+	height: 1000px; /* variable, but set for now becasue no content in div yet */
+	float: left;
+}
+
+.col-2-sub2 {
+	border: 1px solid blue;
+	width: 618px; /* ys2; w = x + y + z */
+	height: 1000px; /* variable, but set for now becasue no content in div yet */
+	float: left;
+}
+
+.col-2-sub3 {
 border: 1px solid orange;
-	width: 618px; /* z; w = x + y + z */
+	width: 618px; /* ys3; w = x + y + z */
 	height: 1000px; /* variable, but set for now becasue no content in div yet */
 	float: left;
 }
@@ -142,6 +156,7 @@ footer {
 border: 1px solid violet;
 	clear: both;
 }
+
 
 /* sytled for v_users_signup */
 .module {
