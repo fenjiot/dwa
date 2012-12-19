@@ -23,7 +23,7 @@ class prototypes_controller extends base_controller {
     	$this->template->client_files = Utils::load_client_files($client_files);   
     
     
-# MAKE IT FIT vvvvvvv    	
+# MAKE IT FIT vvvvvvv  thinl about creating a library function for this.... 	
     	# Build our qurey of products -- want to display all products in system
 		$q = "SELECT *
 			FROM products";

@@ -49,7 +49,7 @@
 				</span> 
 			<? endif; ?>				
 			<a href="/about">About</a> | 
-			<a href="/raerden">Raerden</a>
+			<a href="/">Raerden</a>
 		</div>
 	</div> 
 	</header>
