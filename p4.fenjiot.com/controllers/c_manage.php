@@ -24,6 +24,13 @@ class manage_controller extends base_controller	{
 
 	public function p_addproduct() {
 		
+		if($_POST['product_name'] == '' OR $_POST[''] == ''){
+			
+		}
+		else {
+			
+		}
+		
 		# Associate this post with this user
 		$_POST['user_id'] = $this->user->user_id;
 		
@@ -43,7 +50,6 @@ class manage_controller extends base_controller	{
 		$new_product_id = DB::instance(DB_NAME)->insert('products', $_POST);
 		
 		# Feedback to user
-# NOTE Alertproduct message is not working at this time!!!!
 		Router::redirect("/manage/addproduct?alert=Your product was added! It's product ID is: ".$new_product_id); // AJAX IT
 
 	} // end p_addproduct fct
@@ -56,12 +62,26 @@ class manage_controller extends base_controller	{
 		$file_size  = $_FILES['image_name']['size'];
 		$file_tmp   = $_FILES['image_name']['tmp_name'];
 		$extensions = array(".jpeg",".jpg",".png",".gif",".tif",".tiff");
-		$file_name	= $_FILES['image_name']['name'];
 		
 		# Grab only product_id number from the alert
 		$new_product_id = strrchr($_POST['product_id'],' ');
 # WRITE LOGIC FOR CASE IF USER DID NOT ADD A NEW PRODUCT AND IS JUST TRYING TO ADD AN IMAGE
 
+		# Build mysql query for product_name 
+		$q = "SELECT product_name
+			FROM products
+			WHERE ".$new_product_id." = product_id";
+			
+		# Go through DB and get product_name by product_id
+		# With str_replace, we are replaceing spaces (" ") or dashes ("-") with underscores ("_").
+		# i.e. "Saddle Bag" and "Saddle-Bag" would become "Saddle_Bag"
+		$replace = array(" ", "-");
+		$product_name = str_replace($replace, "_", DB::instance(DB_NAME)->select_field($q));
+		
+		# Set file name to $new_product_id - $product_name - Time Now.ext
+		# i.e. 16-Saddle_Bag-1355883801.jpg
+		$file_name = $new_product_id."-".$product_name."-".Time::now()."".$file_ext; //$_FILES['image_name']['name'];
+		
 		# Check to see if it's an image
 		if(isset($_FILES['image_name'])){
 			if(in_array($file_ext,$extensions) === false){
@@ -74,7 +94,7 @@ class manage_controller extends base_controller	{
 			else {
 				echo "That works";
 				
-				# Save information
+				# Preparing $_POST injection
 				$_POST['user_id'] 		= $this->user->user_id;
 				$_POST['created'] 		= Time::now();
 				$_POST['modified'] 		= Time::now();
@@ -95,12 +115,13 @@ class manage_controller extends base_controller	{
 				# Redirect
 				Router::redirect("/manage/addproduct?alertimage=Your image has been added!");
 			}
-		}
+		} // end check to see if it's an image
 			
 		# Send an error message if it's not an image
 		else {
 			Router::redirect("/manage/addproduct?errorimage=Please select an image to upload");
 		}
+		
 	} // end of p_addimage fct
 	
 	public function products() {
@@ -151,21 +172,20 @@ class manage_controller extends base_controller	{
 
 		# Run our query and store the results in the variable $posts
 		$products = DB::instance(DB_NAME)->select_rows($q);
-print_r($products); // NOTE: THIS IS ONLY RETURNING PRODUCTS WITH IMAGES CONNECTED TO THEM DUE TO THE $q ABOVE
+// NOTE: THIS IS ONLY RETURNING PRODUCTS WITH IMAGES CONNECTED TO THEM DUE TO THE $q ABOVE
 	
 		# Pass the data to the view
 		$this->template->content->products 	= $products;
 		
 		# Render the view
 		echo $this->template;
-		
-	}
+	} // end of products fct
 	
-	public function index() {
+	public function index() { // WORK ON!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		
 		# Setup the view
-		$this->template->content 	= View::instance('v_posts_index');
-		$this->template->title		= "Posts";
+		$this->template->content 	= View::instance('v_manage_index');
+		$this->template->title		= "Manage";
 		
 		# Build our query of posts -- we're only interested in the ones that we're following.
 		$q = "SELECT *

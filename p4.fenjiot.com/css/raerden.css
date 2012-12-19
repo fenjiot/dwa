@@ -186,8 +186,15 @@ border: 1px solid violet;
 	clear: both;
 }
 
+.alert {
+	background-color: #1cbbe2;
+}
 
-/* sytled for v_users_signup */
+.error {
+	background-color: red;
+}
+
+/* styled for v_users_signup */
 .module {
 	border: 1px solid red;
 }
@@ -216,3 +223,17 @@ border: 1px solid violet;
 	height: 25px;
 }
 
+/* styled for v_manage_products */
+.tiled {
+	border: 1px solid #27bcca;
+	max-width: 250px;
+	max-height: 500px;
+	float: left;
+	font-size: 10px;
+	
+}
+
+.tiled img {
+	border: 1px solid red;
+	max-width: 50px; /* FOR TESTING */
+}

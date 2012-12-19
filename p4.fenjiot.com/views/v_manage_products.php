@@ -6,7 +6,7 @@
 <? else: ?>
 
 	<? foreach($products as $product): ?>
-		<div class="products">
+		<div class="products tiled">
 			<h2>Added by user_id: <?=$product['user_id']?></h2>
 			<div class="">Product added on <?=Time::display($product['created'])?></div>
 			<div class="">Product last modified on <?=Time::display($product['modified'])?></div>

@@ -36,8 +36,11 @@
 			<? if($user): ?>
 			<!-- Menu for users that are logged in -->
 				Signed in as <a href="/users/profile"><?=$user->first_name?></a> | 
-				<a href="/users/logout">Logout</a> | 
-				<a href="/users/delete">Erase <?=$user->first_name?> </a> | 
+				<a href="/users/logout">Logout</a> || 
+				<a href="/users/delete">Erase <?=$user->first_name?> </a> || 
+				<a href="/manage/products">Manage Products</a> | 
+				<a href="/manage/addproduct">Add</a> |
+				<a href="/manage/editproduct">Edit</a> ||  
 			<? else: ?>
 			<!-- Menu for those not logged in -->
 				<span class="words">
