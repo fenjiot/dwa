@@ -68,7 +68,7 @@ class manage_controller extends base_controller	{
 		$extensions = array(".jpeg",".jpg",".png",".gif",".tif",".tiff");
 		
 		# Grab only product_id number from the alert
-		$new_product_id = strrchr($_POST['product_id'],' ');
+		$new_product_id = str_replace(" ", "", strrchr($_POST['product_id'],' '));
 # WRITE LOGIC FOR CASE IF USER DID NOT ADD A NEW PRODUCT AND IS JUST TRYING TO ADD AN IMAGE
 
 		# Build mysql query for product_name 
@@ -96,7 +96,7 @@ class manage_controller extends base_controller	{
 				Router::redirect("/manage/addproduct?error=Your file size is too big. Max file size is 2 MB");
 			}	
 			else {
-				echo "That works";
+				//echo "That works";
 				
 				# Preparing $_POST injection
 				$_POST['user_id'] 		= $this->user->user_id;
@@ -109,12 +109,37 @@ class manage_controller extends base_controller	{
 				# Drop [submit] => 'Add product' from $_POST
 				# This is currently neccessary, since $_POST is capturing the submit button's value when submitting
 				unset($_POST['submit']);
-
+				
 				# Save to database
-				DB::instance(DB_NAME)->insert('images', $_POST);
+				$image_id = DB::instance(DB_NAME)->insert('images', $_POST);
 	 
 				# Save to your file path			
 				move_uploaded_file($file_tmp, APP_PATH."/images/raerden/products/".$file_name);
+				
+				# Create thumbnail of image
+					# Load image
+					$imgObj = new Image(APP_PATH."/images/raerden/products/".$file_name);
+					
+					# Creates new name for image.  Tags on -thumb after image name before .ext 
+					$thumbnail = Utils::postfix("-thumb",APP_PATH."/images/raerden/products/".$file_name);
+					
+					$new_file_name = basename($file_name, $file_ext)."-thumb".$file_ext;
+					
+					# Resize image w x h
+					$imgObj->resize(140,190,'auto');
+					
+					# Save image to path with new name.
+					$imgObj->save_image($thumbnail,100);
+					
+					# Modify $_POST for thumbnail name
+					$_POST['thumb_name'] 	= $new_file_name;
+					$_POST['thumb_path'] 	= "/images/raerden/products/".$new_file_name;
+					$_POST['image_id']		= $image_id;
+					unset($_POST['image_name']);
+					unset($_POST['image_path']);
+					
+					# Stick image into database
+					DB::instance(DB_NAME)->insert('thumbs', $_POST);
 
 				# Redirect
 				Router::redirect("/manage/addproduct?alertimage=Your image has been added!");

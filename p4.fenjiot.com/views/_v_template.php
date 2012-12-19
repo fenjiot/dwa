@@ -87,7 +87,6 @@
 	</div><!-- end container -->
 
 	<footer id="foot">
-		Eventual MAP
 		<div class="hide" id="footer_box">
 		something something something<br>
 		somethingeaoifn wai wa<br>
