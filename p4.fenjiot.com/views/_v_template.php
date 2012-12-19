@@ -32,25 +32,6 @@
 		<div class="head_logo hide">
 			<a href="/">p4.fenjiot</a>
 		</div>	
-		<div id="menu">
-			<? if($user): ?>
-			<!-- Menu for users that are logged in -->
-				Signed in as <a href="/users/profile"><?=$user->first_name?></a> | 
-				<a href="/users/logout">Logout</a> || 
-				<a href="/users/delete">Erase <?=$user->first_name?> </a> || 
-				<a href="/manage/products">Manage Products</a> | 
-				<a href="/manage/addproduct">Add</a> |
-				<a href="/manage/editproduct">Edit</a> ||  
-			<? else: ?>
-			<!-- Menu for those not logged in -->
-				<span class="words">
-					<a href="/users/signup">Sign Up</a> | 
-					<a href="/users/login">Login</a> |
-				</span> 
-			<? endif; ?>				
-			<a href="/about">About</a> | 
-			<a href="/">Raerden</a>
-		</div>
 	</div> 
 	</header>
 	
@@ -66,12 +47,26 @@
 							<div id="main_nav">
 								<ul>
 									<li><a href="/" id="top_logo" title="Raerden" alt="Raerden"><img src="/images/raerden/RaerdenLogo_626w_202l.png"></a></li>
-									<li><a href="/bespoke">Bespoke</a></li>
-									<li><a href="/prototypes">Prototypes</a></li>
-									<li><a href="/philosophy">Philosophy</a></li>
-									<li><a href="/aesthetic">Æsthetic</a></li>
-									<li><a href="/connect">Connect</a></li>
-									<li><a href="/about">About this project</a></li>
+									<? if($user): ?>
+									<!-- Menu for users that are logged in -->
+										<? if(isset($manage_nav)): ?>
+											<? foreach($manage_nav as $key => $value): ?>
+												<li><a href='<?=$value?>'><?=$key?></a></li>
+											<? endforeach; ?>
+										<? endif; ?>
+											<li>---------</li>
+											<li><a href="/users/profile">Signed in as <?=$user->first_name?></a></li>
+											<li><a href="/users/delete">Erase <?=$user->first_name?></a></li>
+											<li class="highlight"><a href="/users/logout">Logout</a></li>
+									<? else: ?>
+									<!-- Menu for those not logged in -->
+										<? if(isset($navigation)): ?>
+											<? foreach($navigation as $key => $value): ?>
+												<li><a href='<?=$value?>'><?=$key?></a></li>
+											<? endforeach; ?>
+										<? endif; ?>
+										<li class="highlight"><a href="/users/signup">Sign Up</a> -or- <a href="/users/login">Login</a></li>
+									<? endif; ?>
 								</ul>
 							</div><!-- end main-nav div -->
 						</div><!-- end col-wrapper -->
@@ -91,7 +86,7 @@
 		<div class="clear"></div> <!-- clear! -->
 	</div><!-- end container -->
 
-	<footer id="foot" class="clear">
+	<footer id="foot">
 		Eventual MAP
 		<div class="hide" id="footer_box">
 		something something something<br>

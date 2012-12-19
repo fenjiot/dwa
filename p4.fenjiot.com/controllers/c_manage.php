@@ -23,7 +23,8 @@ class manage_controller extends base_controller	{
 	} // end addproduct fct
 
 	public function p_addproduct() {
-	
+
+/*	
 # WRITE LOGIC TO PREVENT EMPTY FIELD ADDS	
 		if($_POST['product_name'] == '' OR $_POST[''] == ''){
 			
@@ -31,7 +32,8 @@ class manage_controller extends base_controller	{
 		else {
 			
 		}
-# LOGIC^		
+# LOGIC^
+*/		
 		
 		# Associate this post with this user
 		$_POST['user_id'] = $this->user->user_id;

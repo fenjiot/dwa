@@ -24,6 +24,30 @@ class base_controller {
 								
 		# So we can use $user in views			
 			$this->template->set_global('user', $this->user);
+		
+# ====== ADDITION TO BASE ======= v
+		# Build an associative array of links and their urls
+		$navigation = Array(
+			"bespoke"		=> "/bespoke",
+			"prototypes"	=> "/prototypes",
+			"philosophy"	=> "/philosophy",
+			"Æsthetic"		=> "/aesthetic",
+			"connect"		=> "/connect",
+			"about this project"	=> "/about",
+		);
+
+		$manage_nav = Array(
+			"manage index"	=> "/manage",
+			"products"		=> "/manage/products",
+			"add"			=> "/manage/addproduct",
+			"edit"			=> "/manage/editproduct",
+		);
+			
+		# Pass navigation array to the template.
+		$this->template->navigation = $navigation;
+		$this->template->manage_nav = $manage_nav;  
+
+# ====== ADDITION TO BASE ======= ^
 			
 	}
 	

@@ -16,7 +16,7 @@
 			<ul>
 				<? if(isset($navigation)): ?>
 					<? foreach($navigation as $key => $value): ?>
-						<li><a id="#<?=$value?>"href="<?=$value?>"><?=$value?></a></li>
+						<li><a id="#<?=$value?>"href="<?=$value?>"><?=$key?></a></li>
 					<? endforeach; ?>
 				<? endif; ?>
 			</ul>
@@ -31,7 +31,7 @@
 			<br>
 		
 			<ul>
-				<? foreach ?>
+
 			</ul>
 			
 		</div> <!-- end prototypes div -->

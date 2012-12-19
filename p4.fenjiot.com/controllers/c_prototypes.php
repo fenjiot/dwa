@@ -22,7 +22,7 @@ class prototypes_controller extends base_controller {
     
     	$this->template->client_files = Utils::load_client_files($client_files);   
     
-    
+
 # MAKE IT FIT vvvvvvv  thinl about creating a library function for this.... 	
     	# Build our qurey of products -- want to display all products in system
 		$q = "SELECT *
@@ -71,7 +71,7 @@ class prototypes_controller extends base_controller {
 		# Pass the data to the view
 		$this->template->content->products 	= $products;
 # MAKE IT FIT ^^^^^^^		
-		
+
     	
     	# Build subnavigation
     	$navigation = Array(
@@ -79,9 +79,9 @@ class prototypes_controller extends base_controller {
 			"add post" => "/posts/add/",
 			"logout"   => "/users/logout/",
 		);
-					
+				
 		# Pass that array to the template.
-		$this->template->navigation = $navigation;	
+		$this->template->content->navigation = $navigation;	
 	      		
 		# Render the view
 		echo $this->template;
@@ -96,7 +96,7 @@ class prototypes_controller extends base_controller {
 		
 		$selected_item = 0; // need to define
 		
-		$this->template->product	= View::instance("'v_prototypes_'".$selected_item."'");
+		$this->template->content->product	= View::instance("'v_prototypes_'".$selected_item."'");
 		
 		# Render template
 		echo $this->template;
