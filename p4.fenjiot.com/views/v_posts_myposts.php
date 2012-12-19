@@ -10,7 +10,7 @@
 
 <? else: ?>
 	<? foreach($posts as $post): ?>
-		<form method='POST' action='/posts/edit'>
+		<form name='new-post' method='POST' action='/posts/edit'>
 			<div class="posts">
 				<h2><?=$post['first_name']?> <?=$post['last_name']?> says:</h2>
 				<div class="postedtext"><?=$post['content']?></div>
@@ -27,5 +27,6 @@
 				<br><br>
 			</div>
 		</form>
+		<div id='results'></div>
 	<? endforeach; ?>
 <? endif; ?>

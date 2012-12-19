@@ -1,5 +1,5 @@
 <div>
-	<h1 id="page_title">About</h1>
+	<h1 id="page_title">About the project</h1>
 	
 	<div>
 		<ul class="quicklinks">

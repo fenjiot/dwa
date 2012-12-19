@@ -40,7 +40,8 @@
 			<label for="signup-password">Password</label>
 			<div class="input"><input id="signup-password" type="password" name="password" required="required"></div>
 		</div>  <!-- end .field-wrapper -->
-		
+
+<!-- TAKING OUT FOR NOW	to TEST
 		<div class="field-wrapper">
 			<label for="signup-password">Confirm Password</label>
 			<div class="input"><input id="signup-password-confirm" type="password" name="password_confirm" required="required"></div>

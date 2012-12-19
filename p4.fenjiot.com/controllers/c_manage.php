@@ -1,5 +1,5 @@
 <?php
-class posts_controller extends base_controller	{
+class manage_controller extends base_controller	{
 
 	public function __construct() {
 		parent::__construct();
@@ -11,27 +11,18 @@ class posts_controller extends base_controller	{
 
 	} // end __construct
 
-
-	public function add() {
+	public function addproduct() {
 		
 		# Setup the view
-		$this->template->content 	= View::instance('v_posts_add');
-		$this->template->title 		= "Add a new post";
-		
-		# Load CSS / JS
-		$client_files = Array(
-					"/js/jquery.form.js",
-					);
-		    
-		$this->template->client_files = Utils::load_client_files($client_files); 
+		$this->template->content 	= View::instance('v_manage_addproduct');
+		$this->template->title 		= "Add a new product";
 		
 		# Render the view
 		echo $this->template;
 		
-	} // end add fct
-	
-	
-	public function p_add() {
+	} // end addproduct fct
+
+	public function p_addproduct() {
 		
 		# Associate this post with this user
 		$_POST['user_id'] = $this->user->user_id;
@@ -39,16 +30,136 @@ class posts_controller extends base_controller	{
 		# Unix timestamp of when this post was created / modified
 		$_POST['created'] 	= Time::now();
 		$_POST['modified'] 	= Time::now();
+		
+# ADD LOGIC TO Check to see if product is already in the system, BUT for now move on...
+		
+		# Drop [submit] => 'Add product' from $_POST
+		# This is currently neccessary, since $_POST is capturing the submit button's value when submitting
+		unset($_POST['submit']);
 
-		# Insert post
+		# Insert product information into products table
 		# Note: we don't have to sanatize any of the $_POST data because we're using an insert method that does it for us
-		DB::instance(DB_NAME)->insert('posts', $_POST);
+		# Also grabbing product_id for the newly added product
+		$new_product_id = DB::instance(DB_NAME)->insert('products', $_POST);
 		
 		# Feedback to user
-#		Router::redirect("/posts/myposts/");  // Commented out to  prevent auto redirect. Testing ajax addition
+# NOTE Alertproduct message is not working at this time!!!!
+		Router::redirect("/manage/addproduct?alert=Your product was added! It's product ID is: ".$new_product_id); // AJAX IT
 
-	} // end p_add fct
+	} // end p_addproduct fct
 	
+	public function p_addimage() {
+		# The database has columns "image_name" 
+		# and NOT "title"
+		$errors     = array();
+		$file_ext   = strtolower(strrchr($_FILES['image_name']['name'], '.'));
+		$file_size  = $_FILES['image_name']['size'];
+		$file_tmp   = $_FILES['image_name']['tmp_name'];
+		$extensions = array(".jpeg",".jpg",".png",".gif",".tif",".tiff");
+		$file_name	= $_FILES['image_name']['name'];
+		
+		# Grab only product_id number from the alert
+		$new_product_id = strrchr($_POST['product_id'],' ');
+# WRITE LOGIC FOR CASE IF USER DID NOT ADD A NEW PRODUCT AND IS JUST TRYING TO ADD AN IMAGE
+
+		# Check to see if it's an image
+		if(isset($_FILES['image_name'])){
+			if(in_array($file_ext,$extensions) === false){
+				Router::redirect("/manage/addproduct?error=Only jpg, png or gif images please.");
+			}
+			else if($file_size > 2097152) { 
+				# 2097152 bytes = 2 MB
+				Router::redirect("/manage/addproduct?error=Your file size is too big. Max file size is 2 MB");
+			}	
+			else {
+				echo "That works";
+				
+				# Save information
+				$_POST['user_id'] 		= $this->user->user_id;
+				$_POST['created'] 		= Time::now();
+				$_POST['modified'] 		= Time::now();
+				$_POST['image_name']	= $file_name;
+				$_POST['image_path']	= "/images/raerden/products/".$file_name; // IMPORTANT CHECK TO MAKE SURE IT IS STORING THEM CORRECTLY!
+				$_POST['product_id']	= $new_product_id;
+				
+				# Drop [submit] => 'Add product' from $_POST
+				# This is currently neccessary, since $_POST is capturing the submit button's value when submitting
+				unset($_POST['submit']);
+
+				# Save to database
+				DB::instance(DB_NAME)->insert('images', $_POST);
+	 
+				# Save to your file path			
+				move_uploaded_file($file_tmp, APP_PATH."/images/raerden/products/".$file_name);
+
+				# Redirect
+				Router::redirect("/manage/addproduct?alertimage=Your image has been added!");
+			}
+		}
+			
+		# Send an error message if it's not an image
+		else {
+			Router::redirect("/manage/addproduct?errorimage=Please select an image to upload");
+		}
+	} // end of p_addimage fct
+	
+	public function products() {
+		
+		# Setup the view
+		$this->template->content	= View::instance('v_manage_products');
+		$this->template->title		= "Manage Products";
+		
+		# Build our qurey of products -- want to display all products in system
+		$q = "SELECT *
+			FROM products";
+			
+		# Execute out qurey, storing results in a variable $all_products
+		$all_products = DB::instance(DB_NAME)->select_rows($q);
+
+		# In order to query for the posts we need, we're going to need a string of user id's, separated by commas
+		# To create this, loop through our connections array
+		$all_products_string = ""; // empty at first
+		
+		foreach($all_products as $key => $product) {
+			$all_products_string .= $product['product_id'] . ",";
+		}
+
+		# Added to fix error that arises when following no one
+		# This avoids the issue later with having nothing in the '$q = "SELECT * ... IN ()";' syntax error with the empty ()
+		if($all_products_string == "") {
+			# If $connections_string is empty (i.e. when the user isn't following anyone) set to user_id_followed 0
+			$all_products_string = "0,";	
+		}
+		
+		# Remove final comma in $connections_string
+		$all_products_string = substr($all_products_string, 0, -1);
+
+		# Selecting specific information we want $post to contain later on 
+		# We don't want to pass token, user.password, user.created, user.modified, etc
+		# Using DB table: posts AS p, users AS u		
+		$select = "p.product_id, p.created, p.modified, p.user_id, 
+				p.product_name, p.product_category, p.product_description, 
+				p.product_story, p.material_name, p.material_color, 
+				p.material_description, i.image_id, i.product_id, i.image_name, 
+				i.image_path";
+		
+		# Now build our query to grab the posts
+		$q = "SELECT " . $select . "
+			FROM products AS p
+			JOIN images AS i USING (product_id)
+			WHERE p.product_id IN (" . $all_products_string . ")"; // this is where we're using the string of product_ids we created
+
+		# Run our query and store the results in the variable $posts
+		$products = DB::instance(DB_NAME)->select_rows($q);
+print_r($products); // NOTE: THIS IS ONLY RETURNING PRODUCTS WITH IMAGES CONNECTED TO THEM DUE TO THE $q ABOVE
+	
+		# Pass the data to the view
+		$this->template->content->products 	= $products;
+		
+		# Render the view
+		echo $this->template;
+		
+	}
 	
 	public function index() {
 		
@@ -110,7 +221,11 @@ class posts_controller extends base_controller	{
 		echo $this->template;
 		
 	} // end index fct
-	
+
+# ========================================================================================================================= #
+# BELOW THE FOLD
+# ========================================================================================================================= #		
+
 	
 	public function users() {
 		
@@ -224,10 +339,6 @@ class posts_controller extends base_controller	{
 		Router::redirect("/posts/myposts");
 	
 	} // end edit fct
-	
-	
-	
-	
 	
 	
 } // end of the class

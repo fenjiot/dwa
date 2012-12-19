@@ -151,12 +151,23 @@ border: 1px solid orange;
 	float: left;
 }
 
-.submenu1 {
+#submenu1 {
 	font-family: 'RobotoRegular' ,sans-serif;
 	font-size: 12px;
 }
 
-.submenu1 li {
+#submenu1 li {
+	padding: 10px;
+	float: none; /* need to negate earlier float inherited from .col-2 */
+	text-transform: uppercase;
+}
+
+#submenu2 {
+	font-family: 'RobotoRegular' ,sans-serif;
+	font-size: 12px;
+}
+
+#submenu2 li {
 	padding: 10px;
 	float: none; /* need to negate earlier float inherited from .col-2 */
 	text-transform: uppercase;

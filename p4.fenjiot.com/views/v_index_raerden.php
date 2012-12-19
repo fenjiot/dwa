@@ -9,7 +9,7 @@
 							<ul>
 								<li><a href="#home" id="top_logo" title="Raerden" alt="Raerden"><img src="/images/raerden/RaerdenLogo_626w_202l.png"></a></li>
 								<li><a href="#bespoke">Bespoke</a></li>
-								<li><a href="#prototypes">Prototypes</a></li>
+								<li><a href="/prototypes">Prototypes</a></li>
 								<li><a href="#philosophy">Philosophy</a></li>
 								<li><a href="#aesthetic">Æsthetic</a></li>
 								<li><a href="#connect">Connect</a></li>
@@ -39,14 +39,16 @@
 						</div> <!-- end home div -->
 						
 						<div class="col-2-sub1">I am col-2-sub1
+							<!-- COMMENTED OUT FOR NOW
 							<div class="submenu1">
-							<ul>
-								<li>tote bags</li>
-								<li>handbags</li>
-								<li>backpacks</li>
-								<li>accessories</li>
-							</ul>
-							</div> <!-- end .submenu1 -->
+								<ul>
+									<li>totes</li>
+									<li>handbags</li>
+									<li>backpacks</li>
+									<li>accessories</li>
+								</ul>
+							</div> 
+							end .submenu1 -->
 						</div> <!-- end .col-2-sub1 -->
 						
 						<div class="col-2-sub2">I am col-2-sub2
@@ -97,10 +99,10 @@
 								<br>
 							
 								<ul>
-									<li>tote bags</li>
-									<li>handbags</li>
-									<li>backpacks</li>
-									<li>accessories</li>
+									<li><a href="/prototypes#totes">totes</a></li>
+									<li><a href="/prototypes#handbags">handbags</a></li>
+									<li><a href="/prototypes#backpacks">backpacks</a></li>
+									<li><a href="/prototypes#accessories">accessories</a></li>
 								</ul>
 								
 							</div> <!-- end prototypes div -->
