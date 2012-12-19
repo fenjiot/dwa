@@ -1,7 +1,7 @@
 <? if($products == array ()): ?>
 	
  	<h2>There are no products in the system.&nbsp Nothing to see here.</h2>
- 	<a class="mediumwords" href="/manage/addproducts/"> &nbsp&gt;&gt;Add products</a>
+ 	<a class="mediumwords" href="/manage/addproduct/"> &nbsp&gt;&gt;Add a product</a>
 
 <? else: ?>
 
@@ -15,25 +15,25 @@
 			
 			Product Name: <?=$product['product_name']?>
 			
-			<br><br>
+			<br>
 			
 			Product Category: <?=$product['product_category']?>
 			
-			<br><br>
+			<br>
 			
 			Product Image: <img src="<?=$product['image_path']?>"><?=$product['image_name']?>
 			
-			<br><br>
+			<br>
 			
 			<div class="">
 			Product Story:<?=$product['product_story']?></div>
 			
-			<br><br>
+			<br>
 			
 			<div class="">
 			Product Description:<?=$product['product_description']?></div>
 			
-			<br><br>
+			<br>
 		</div>
 	<? endforeach; ?>
 	

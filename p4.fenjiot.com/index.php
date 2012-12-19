@@ -25,6 +25,10 @@
     Router::$routes = array(
     	'/' => '/index',     # default controller when "/" is requested
     	'/about' => '/index/about',
+    	'/bespoke' => '/index/bespoke',
+    	'/philosophy' => '/index/philosophy',
+    	'/aesthetic' => '/index/aesthetic',
+    	'/connect' => '/index/connect',
     	'/raerden' => '/index/raerden',
     );
     

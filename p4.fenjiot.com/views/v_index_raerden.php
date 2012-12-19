@@ -7,12 +7,12 @@
 					<div class="col-wrapper">
 						<div id="main_nav">I am main_nav
 							<ul>
-								<li><a href="#home" id="top_logo" title="Raerden" alt="Raerden"><img src="/images/raerden/RaerdenLogo_626w_202l.png"></a></li>
-								<li><a href="#bespoke">Bespoke</a></li>
+								<li><a href="/raerden#home" id="top_logo" title="Raerden" alt="Raerden"><img src="/images/raerden/RaerdenLogo_626w_202l.png"></a></li>
+								<li><a href="/raerden#bespoke">Bespoke</a></li>
 								<li><a href="/prototypes">Prototypes</a></li>
-								<li><a href="#philosophy">Philosophy</a></li>
-								<li><a href="#aesthetic">Æsthetic</a></li>
-								<li><a href="#connect">Connect</a></li>
+								<li><a href="/raerden#philosophy">Philosophy</a></li>
+								<li><a href="/raerden#aesthetic">Æsthetic</a></li>
+								<li><a href="/raerden#connect">Connect</a></li>
 							</ul>
 						</div><!-- end main-nav div -->
 					</div><!-- end col-wrapper -->

@@ -11,21 +11,17 @@ ul {
 
 #container {
 border: 1px solid red;
-	width: 1012px;
+	max-width: 1012px;
 	height: auto; /* NOTE: YOU ARE GOING TO WANT TO MAKE ALMOST ALL THE HEIGHTS AUTO TO KEEP THEM FLEXIBLE */
+	margin-left: auto; /* to center */
+	margin-right: auto; /* to center */
 }
 
 .clear {clear: both;}
 
 header {
 border: 1px solid green;
-	
-}
-
-
-#content {
-border: 1px solid black;
-
+	font-size: 12px;
 }
 
 .col-mask {
@@ -42,15 +38,13 @@ border: 1px solid yellow;
 .col-left {
 border: 1px solid blue;
 	width: 1006px; /* w; w = x + y */ /* must be 1006 for now bc of the 1px borders on col-1,2,3; change to 1000px later */
-	height: auto;
-	
-	
+	height: auto;	
 }
 
 .col-1 {
 border: 1px solid green;
 	width: 146px; /* x; w = x + y */
-	height: 1000px; /* variable, but set for now becasue no content in div yet; It probably isn't going to matter since the content here will be fixed (probably) */
+	height: auto; /* probably don't need to say this though */
 	float: left;
 	margin: 0px;
 	padding: 0px;
@@ -65,34 +59,31 @@ border: 1px solid brown;
 	text-transform: uppercase;
 }
 
-#main_nav li {
+#main_nav li, .subnav li {
 	padding: 10px;
 	float: none; /* need to negate earlier float inherited from .col-1 */
 }
 
-#main_nav a {color: #acacac;}
+#main_nav a, .subnav a {color: #acacac; text-decoration: none;}
 
-#main_nav a:link, #main_nav a:visited {background-color: none; color: #071844;}
-#main_nav a:hover {background-color: white; color: #acacac;}
-#main_nav a:active {background-color: aqua;}
-
-/* Will have to figure out how to specify height and width of an imported image
-#top_logo {
-	background: url(/images/raerden/RaerdenLogo_626w_202l.png), no-repeat;
-	display: block;
-	width: 119px;
-	height: 37px;
-	overflow: hidden;
-    text-indent: 100%;
-    white-space: nowrap;
-}
-*/
+#main_nav a:link, #main_nav a:visited, .subnav a:link, .subnav a:visited {background-color: none; color: #071844;}
+#main_nav a:hover, .subnav a:hover {background-color: none; color: #ababab;}
+#main_nav a:active, .subnav a:active {background-color: aqua;}
 
 #top_logo img {
 	width: 119px;
 	height: 37px;
 }
 
+.subnav {
+border: 1px solid red;
+	position: fixed; /* fix in position it loads. Assuming this was set up correctly, it would be in the right place at start instead of offset right now */ 
+	top: 108px; /* to match current main_nav position */
+	width: 122px; /* actually want to inherit from .col-2-sub1 */
+	font-family: 'RobotoRegular' ,sans-serif;
+	font-size: 10px;
+	text-transform: uppercase;
+}
 
 .col-2 {
 border: 1px solid aqua;
@@ -103,21 +94,26 @@ border: 1px solid aqua;
 	padding: 0px;
 }
 
-#bespoke {
-	font-family: 'RobotoRegular' ,sans-serif;
-	font-size: 12px;
-	text-transform: uppercase;
+#content {
+border: 1px solid black;
+
 }
 
-#bespoke h3 {
-	font-family: 'RobotoThin' ,sans-serif;
-	font-size: 21px;
+.slideshow {
+border: 1px solid orange;
+	max-height: 538px; /* image width was set in responsive-slides.js */
+	overflow: hidden;
+	background: center;
 }
 
-#bespoke p {
-	font-family: 'RobotoRegular' ,sans-serif;
-	font-size: 12px;
+/* probably have to center the image using responsive-slides.js
+.slideshow ul li{
+	border: 5px solid gold;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 }
+*/
 
 #prototypes {
 	font-family: 'RobotoRegular' ,sans-serif;
@@ -132,59 +128,58 @@ border: 1px solid aqua;
 
 .col-2-sub1 {
 	border: 1px solid green;
-	width: 116px; /* ys1; y = ys1 + ys2 + ys3 */
-	height: 1000px; /* variable, but set for now becasue no content in div yet */
+	width: 122px; /* ys1; y = ys1 + ys2 + ys3 */
+	min-height: 500px;
 	float: left;
-}
-
-.slideshow {
-border: 1px solid orange;
-	max-height: 538px;
-	overflow: hidden;
-	background: center;
 }
 
 .col-2-sub2 {
 	border: 1px solid blue;
-	width: 116px; /* ys2; y = ys1 + ys2 + ys3 */
-	height: 1000px; /* variable, but set for now becasue no content in div yet */
+	width: 122px; /* ys2; y = ys1 + ys2 + ys3 */
+	min-height: 500px;
 	float: left;
-}
-
-#submenu1 {
-	font-family: 'RobotoRegular' ,sans-serif;
-	font-size: 12px;
-}
-
-#submenu1 li {
-	padding: 10px;
-	float: none; /* need to negate earlier float inherited from .col-2 */
-	text-transform: uppercase;
-}
-
-#submenu2 {
-	font-family: 'RobotoRegular' ,sans-serif;
-	font-size: 12px;
-}
-
-#submenu2 li {
-	padding: 10px;
-	float: none; /* need to negate earlier float inherited from .col-2 */
-	text-transform: uppercase;
 }
 
 .col-2-sub3 {
 border: 1px solid orange;
-	width: 618px; /* ys3; y = ys1 + ys2 + ys3 */
-	height: 1000px; /* variable, but set for now becasue no content in div yet */
+	width: 592px; /* ys3; y = ys1 + ys2 + ys3 */
+	height: auto; /* probably don't need to say this though */
 	float: left;
 }
+
+#main_information {
+	font-family: 'RobotoRegular' ,sans-serif;
+	font-size: 12px;
+	text-transform: uppercase;
+}
+
+#main_information h3 {
+	font-family: 'RobotoThin' ,sans-serif;
+	font-size: 36px;
+}
+
+#main_information p {
+	font-family: 'RobotoRegular' ,sans-serif;
+	font-size: 18px;
+
+} /* Repeated information from #main_information */
 
 
 footer {
 border: 1px solid violet;
 	clear: both;
+	position: fixed;
+	bottom: 0;
 }
+
+.hide {
+	display: none;
+}
+
+.show {
+	
+}
+
 
 .alert {
 	background-color: #1cbbe2;
@@ -192,6 +187,26 @@ border: 1px solid violet;
 
 .error {
 	background-color: red;
+}
+
+/* styled for v_index_about */
+.sub_box1 {
+	margin: 10px;
+	font-weight: 500;
+	padding: 10px;
+	font-size: 13px;
+	float: left;
+}
+.sub_box2 {
+	width: 270px;
+	height: 270px;
+	float: left;
+}
+.sub_box2 img, .sub_box2 span {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center
 }
 
 /* styled for v_users_signup */
@@ -236,4 +251,8 @@ border: 1px solid violet;
 .tiled img {
 	border: 1px solid red;
 	max-width: 50px; /* FOR TESTING */
+}
+
+.active {
+	background-color: orange;
 }

@@ -29,7 +29,7 @@
 
 <body>
 	<header class="main" role="banner">
-		<div class="head_logo">
+		<div class="head_logo hide">
 			<a href="/">p4.fenjiot</a>
 		</div>	
 		<div id="menu">
@@ -56,21 +56,52 @@
 	
 	<br>
 	
-	<div id="content">
-		<?=$content;?> 
-		<div class="clear"> CLEAR! #content</div>
-	</div>
+	<div id="container">
+		<div class="col-mask"> 
+			<div class="col-mid">
+				<div class="col-left">
+					
+					<div class="col-1">
+						<div class="col-wrapper">
+							<div id="main_nav">
+								<ul>
+									<li><a href="/" id="top_logo" title="Raerden" alt="Raerden"><img src="/images/raerden/RaerdenLogo_626w_202l.png"></a></li>
+									<li><a href="/bespoke">Bespoke</a></li>
+									<li><a href="/prototypes">Prototypes</a></li>
+									<li><a href="/philosophy">Philosophy</a></li>
+									<li><a href="/aesthetic">Æsthetic</a></li>
+									<li><a href="/connect">Connect</a></li>
+									<li><a href="/about">About this project</a></li>
+								</ul>
+							</div><!-- end main-nav div -->
+						</div><!-- end col-wrapper -->
+					</div><!-- end col-1 div -->
+					
+					<div class="col-2">
+						<div id="content">
+							<?=$content;?> 
+						</div>
+					</div> <!-- end col-2 div -->
+					<div class="clear"></div> <!-- clear! -->
+				</div><!-- end col-left -->
+				<div class="clear"></div> <!-- clear! -->
+			</div><!-- end col-mid -->
+			<div class="clear"></div> <!-- clear! -->
+		</div><!-- end col-mask -->
+		<div class="clear"></div> <!-- clear! -->
+	</div><!-- end container -->
 
-<footer id="foot" class="clear">
-	Eventual MAP
-	<div class="hide" id="footer_box">
-	something something something<br>
-	somethingeaoifn wai wa<br>
-	ouwbfouabcoauba<br>
-	ouwfoauwbfoawubo<br>
-	okay
-	</div>
-</footer>	
-	
+	<footer id="foot" class="clear">
+		Eventual MAP
+		<div class="hide" id="footer_box">
+		something something something<br>
+		somethingeaoifn wai wa<br>
+		ouwbfouabcoauba<br>
+		ouwfoauwbfoawubo<br>
+		okay
+		
+		</div>
+	</footer>	
+
 </body>
 </html>
