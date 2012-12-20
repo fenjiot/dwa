@@ -190,13 +190,13 @@ class manage_controller extends base_controller	{
 		$select = "p.product_id, p.created, p.modified, p.user_id, 
 				p.product_name, p.product_category, p.product_description, 
 				p.product_story, p.material_name, p.material_color, 
-				p.material_description, i.image_id, i.product_id, i.image_name, 
-				i.image_path";
+				p.material_description, t.product_id, t.thumb_name, 
+				t.thumb_path";
 		
 		# Now build our query to grab the posts
 		$q = "SELECT " . $select . "
 			FROM products AS p
-			JOIN images AS i USING (product_id)
+			JOIN thumbs AS t USING (product_id)
 			WHERE p.product_id IN (" . $all_products_string . ")"; // this is where we're using the string of product_ids we created
 
 		# Run our query and store the results in the variable $posts

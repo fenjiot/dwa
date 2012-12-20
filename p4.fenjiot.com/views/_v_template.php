@@ -73,6 +73,7 @@
 					</div><!-- end col-1 div -->
 					
 					<div class="col-2">
+						<div class="col-spacer"> </div>
 						<div id="content">
 							<?=$content;?> 
 						</div>

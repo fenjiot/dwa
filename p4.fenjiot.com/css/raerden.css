@@ -96,7 +96,6 @@ border: 1px solid brown;
 .subnav {
 border: 1px solid red;
 	position: fixed; /* fix in position it loads. Assuming this was set up correctly, it would be in the right place at start instead of offset right now */ 
-	top: 108px; /* to match current main_nav position */
 	width: 122px; /* actually want to inherit from .col-2-sub1 */
 	font-family: 'RobotoRegular' ,sans-serif;
 	font-size: 10px;
@@ -114,6 +113,12 @@ border: 1px solid aqua;
 	float: left;
 	margin: 0px;
 	padding: 0px;
+}
+
+.col-spacer {
+	border: 1px solid green;
+	width: 500px;
+	height: 50px;	
 }
 
 #content {
@@ -264,7 +269,6 @@ border: 1px solid orange;
 
 .tiled img {
 	border: 1px solid red;
-	max-width: 50px; /* FOR TESTING */
 }
 
 .active {
