@@ -38,7 +38,7 @@ class base_controller {
 
 		$manage_nav = Array(
 			"manage index"	=> "/manage",
-			"products"		=> "/manage/products",
+			"product"		=> "/manage/product",
 			"add"			=> "/manage/addproduct",
 			"edit"			=> "/manage/editproduct",
 		);

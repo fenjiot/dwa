@@ -23,17 +23,6 @@ class manage_controller extends base_controller	{
 	} // end addproduct fct
 
 	public function p_addproduct() {
-
-/*	
-# WRITE LOGIC TO PREVENT EMPTY FIELD ADDS	
-		if($_POST['product_name'] == '' OR $_POST[''] == ''){
-			
-		}
-		else {
-			
-		}
-# LOGIC^
-*/		
 		
 		# Associate this post with this user
 		$_POST['user_id'] = $this->user->user_id;
@@ -153,11 +142,11 @@ class manage_controller extends base_controller	{
 		
 	} // end of p_addimage fct
 	
-	public function products() {
+	public function product() {
 		
 		# Setup the view
-		$this->template->content	= View::instance('v_manage_products');
-		$this->template->title		= "Manage Products";
+		$this->template->content	= View::instance('v_manage_product');
+		$this->template->title		= "Manage Product";
 		
 		# Build our qurey of products -- want to display all products in system
 		$q = "SELECT *
@@ -193,7 +182,7 @@ class manage_controller extends base_controller	{
 				p.material_description, t.product_id, t.thumb_name, 
 				t.thumb_path";
 		
-		# Now build our query to grab the posts
+		# Now build our query to grab the products
 		$q = "SELECT " . $select . "
 			FROM products AS p
 			JOIN thumbs AS t USING (product_id)
@@ -210,66 +199,96 @@ class manage_controller extends base_controller	{
 		echo $this->template;
 	} // end of products fct
 	
-	public function index() { // WORK ON!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	public function index() {
 		
 		# Setup the view
 		$this->template->content 	= View::instance('v_manage_index');
 		$this->template->title		= "Manage";
 		
-		# Build our query of posts -- we're only interested in the ones that we're following.
+		# Build our qurey of all products -- want to display all products in system
 		$q = "SELECT *
-			FROM users_users
-			WHERE user_id = ".$this->user->user_id;
-		
-		# Execute our query, storing results in a variable $connections
-		$connections = DB::instance(DB_NAME)->select_rows($q); 
-		
+			FROM products";
+			
+		# Execute out qurey, storing results in a variable $all_products
+		$all_products = DB::instance(DB_NAME)->select_rows($q);
+
 		# In order to query for the posts we need, we're going to need a string of user id's, separated by commas
 		# To create this, loop through our connections array
-		$connections_string = ""; // empty at first
+		$all_products_string = ""; // empty at first
 		
-		foreach($connections as $key => $connection) {
-			$connections_string .= $connection['user_id_followed'] . ",";
-			
+		foreach($all_products as $key => $product) {
+			$all_products_string .= $product['product_id'] . ",";
 		}
 
 		# Added to fix error that arises when following no one
 		# This avoids the issue later with having nothing in the '$q = "SELECT * ... IN ()";' syntax error with the empty ()
-		if($connections_string == "") {
+		if($all_products_string == "") {
 			# If $connections_string is empty (i.e. when the user isn't following anyone) set to user_id_followed 0
-			$connections_string = "0,";	
-		
+			$all_products_string = "0,";	
 		}
 		
 		# Remove final comma in $connections_string
-		$connections_string = substr($connections_string, 0, -1);
-		
-		# Selecting specific information we want $post to contain later on 
-		# We don't want to pass token, user.password, user.created, user.modified, etc
-		# Using DB table: posts AS p, users AS u		
-		$select = "p.post_id, p.created, p.modified, p.user_id, p.content, u.user_id, u.email, u.first_name, u.last_name";
-		
-		# Now build our query to grab the posts
-		$q = "SELECT " . $select . "
-			FROM posts AS p
-			JOIN users AS u USING (user_id)
-			WHERE p.user_id IN (" . $connections_string . ")"; // this is where we're using the string of user_ids we created
+		$all_products_string = substr($all_products_string, 0, -1);
 
-		# Run our query and store the results in the variable $posts
-		$posts = DB::instance(DB_NAME)->select_rows($q);
+		# Run our query and store the results in the variable $products
+		$products = DB::instance(DB_NAME)->select_rows($q);
+# WORKING ON!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!		
+		# Now build our query to grab the thumbs for existing products
+		$q = "SELECT products.product_id, thumbs.thumb_path
+			FROM products
+			JOIN thumbs USING (product_id)
+			WHERE product_id IN (" . $all_products_string . ")";
 		
-		# Reverse order of post information.  Toggle false to maintain Array order [0],[1],[2],[3], etc while other fields are switched.
-		# If original array was something like Array ([0]=>A, [1]=>B, [2]=>C)  Reverse array toggled false would be Array ([0]=>C, [1]=>B, [2]=>A).
-		# This way we get posts sorted in descending order (newest posts first, oldest last)
-		$reverse_posts = array_reverse($posts, false);	
+		$thumbs = DB::instance(DB_NAME)->select_rows($q);
 		
+		echo "<br><br><br>";
+		print_r($thumbs);
+# WORKING ON!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!				
 		# Pass the data to the view
-		$this->template->content->posts = $reverse_posts;
+		$this->template->content->products 	= $products;
+		$this->template->content->thumbs	= $thumbs;
 		
 		# Render the view
 		echo $this->template;
 		
 	} // end index fct
+	
+	public function editproduct() {
+	
+		# Setup the view
+		$this->template->content 	= View::instance('v_manage_editproduct');
+		$this->template->title 		= "Edit product information";
+		
+		# IMPORTANT -- NEED TO PASS IN product id!!!!!
+		
+		$q = "SELECT *
+			FROM products
+			WHERE product_id = ".$product_id;
+		
+		$product_info = DB::instance(DB_NAME)->select_row($q);
+		
+		# Pass existing product information to view
+		$this->template->content->product = $product_info;
+		
+		# Render the view
+		echo $this->template;
+		
+	} // end of editproduct
+	
+	public function p_editproduct() {
+
+		# Unix timestamp of when this post was modified
+		$_POST['modified'] 	= Time::now();
+
+		# Update product infromation 
+		# Note: we don't have to sanatize any of the $_POST data because we're using an update method that does it for us
+		DB::instance(DB_NAME)->update_row('products', $_POST, "WHERE product_id = ".$_POST['product_id']);
+
+		# Redirect user
+		Router::redirect("/manage");
+	
+	} // end edit fct
+
 
 # ========================================================================================================================= #
 # BELOW THE FOLD
@@ -372,23 +391,7 @@ class manage_controller extends base_controller	{
 		echo $this->template;
 		
 	} // end myposts fct
-	
 		
-	public function edit() {
-
-		# Unix timestamp of when this post was modified
-		$_POST['modified'] 	= Time::now();
-
-		# Update post content and modified timestamp 
-		# Note: we don't have to sanatize any of the $_POST data because we're using an update method that does it for us
-		DB::instance(DB_NAME)->update_row('posts', $_POST, "WHERE post_id = ".$_POST['post_id']); // that space after 'post_id = "' is super important...
-
-		# Feedback to user
-#		echo "Your post has been edited. <br><br> <a href='/posts/myposts'>&lt;&lt; Back</a> to your posts";
-		Router::redirect("/posts/myposts");
-	
-	} // end edit fct
-	
 	
 } // end of the class
 
