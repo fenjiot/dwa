@@ -241,8 +241,6 @@ class manage_controller extends base_controller	{
 		
 		$thumbs = DB::instance(DB_NAME)->select_rows($q);
 		
-		echo "<br><br><br>";
-		print_r($thumbs);
 # WORKING ON!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!				
 		# Pass the data to the view
 		$this->template->content->products 	= $products;
@@ -276,7 +274,7 @@ class manage_controller extends base_controller	{
 	} // end of editproduct
 	
 	public function p_editproduct() {
-
+# WOKRING ON!!!!!!!!!!!!!!!!!!!!!!
 		# Unix timestamp of when this post was modified
 		$_POST['modified'] 	= Time::now();
 

@@ -66,7 +66,7 @@ class prototypes_controller extends base_controller {
 
 	public function product($product_id = NULL) {
 		
-$product_id=22;
+$product_id=22; // WANT IT PASSED IN
 		# Setup the view
 		$this->template->content 	= View::instance('v_prototypes_product');
 		$this->template->title 		= $this->products->product_name;
@@ -81,12 +81,12 @@ $product_id=22;
 		# Pass the data to the view
 		$this->template->content->product_info 	= $product_info;
     	
-    	# Build subnavigation
+    	# Build subnavigation NNED TO BUILD DYNAMICALLY
     	$navigation = Array(
-			"posts"    => "/posts/",
+/*			"posts"    => "/posts/",
 			"add post" => "/posts/add/",
 			"logout"   => "/users/logout/",
-		);
+*/		);
 				
 		# Pass that array to the template.
 		$this->template->content->navigation = $navigation;	
