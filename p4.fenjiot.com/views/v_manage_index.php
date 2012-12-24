@@ -12,7 +12,6 @@
 			 	<a class="mediumwords" href="/manage/addproduct/"> &nbsp&gt;&gt;Add a product</a>
 			<? else: ?>			
 				<? foreach($products as $key => $product): ?>
-				<? $i=0; ?>
 					<div class="products tiled">
 						Product name: <?=$product['name']?>
 						<br>
