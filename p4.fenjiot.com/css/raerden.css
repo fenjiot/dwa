@@ -95,7 +95,7 @@ border: 1px solid white;
 }
 
 .subnav {
-/*border: 1px solid red;*/
+/* border: 1px solid red; */
 	position: fixed; /* fix in position it loads. Assuming this was set up correctly, it would be in the right place at start instead of offset right now */ 
 	width: 122px; /* actually want to inherit from .col-2-sub1 */
 	font-family: 'RobotoRegular' ,sans-serif;
@@ -120,7 +120,7 @@ border: 1px solid aqua;
 .col-spacer {
 /*	border: 1px solid green; */
 	width: 500px;
-	height: 50px;	
+	height: 59px;	
 }
 
 #content {
@@ -156,7 +156,7 @@ border: 1px solid orange;
 }
 
 .col-2-sub1 {
-/*	border: 1px solid green; */
+/* border: 1px solid green; */
 	width: 122px; /* ys1; y = ys1 + ys2 + ys3 */
 	min-height: 500px;
 	float: left;
@@ -173,6 +173,7 @@ border: 1px solid orange;
 border: 1px solid orange;
 	width: auto; /* 604px -- ys3; y = ys1 + ys2 + ys3 */
 	height: auto; /* probably don't need to say this though */
+	max-width: 604px;
 	float: left;
 }
 
