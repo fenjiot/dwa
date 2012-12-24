@@ -71,7 +71,6 @@
 					<br><br>
 					
 					<div class="field-wrapper">
-<!-- WORK ON NEED TO MODIFY CONTROLLER
 						<label for="product-image">Add Product Image</label>
 						<div class="input"><input id="product-image" type="file" name="image_name"></div>
 						<? if(@$_GET['errorimage']): ?>
@@ -81,7 +80,6 @@
 						<? if(@$_GET['alertimage']): ?>
 						<span class="alert"><?=$_GET['alertimage']?></span><br>
 						<? endif; ?>
--->
 					</div>  <!-- end .field-wrapper -->
 					<div class="clear"></div>
 					<br><br><br>
@@ -125,7 +123,7 @@
 			</script>
 			-->
 			<br>
-			
+<!--			
 			<form name='new-post2' method='POST' enctype="multipart/form-data" action='/manage/p_addimage'>
 				<div class="module">
 					<div class="header" id="header-dynamic">Then Add an image for this product </div>
@@ -143,17 +141,17 @@
 						<span class="alert"><?=$_GET['alertimage']?></span><br>
 						<? endif; ?>
 					</div>  <!-- end .field-wrapper -->
-					
+<!--					
 					<div class="clear"></div>
 				
 					<br><br>
 					
 				</div> <!-- end .module -->
-				
+<!--				
 				<div class="module">
 					<input id="button" type="submit" name="submit" value="Add image">
 				</div> <!-- end .module -->
-			</form>
+<!--			</form>
 			
 			<!--
 			<div id='results2'></div>

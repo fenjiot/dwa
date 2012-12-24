@@ -22,6 +22,11 @@
 	<!-- Global JS -->
 	<script src="/js/raerden.js"></script>
 	
+	<!-- Resposive Slides Slideshow Specific JS/CSS -->
+	<link rel="stylesheet" href="/css/responsive-slides.css" type="text/css">
+	<script src="/js/responsiveslides.min.js"></script>
+	<script src="/js/responsive-slides.js"></script>
+	
 	<!-- Controller Specific JS/CSS -->
 	<?php echo @$client_files; ?>
 	

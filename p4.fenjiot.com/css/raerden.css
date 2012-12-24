@@ -169,7 +169,7 @@ border: 1px solid orange;
 
 .col-2-sub3 {
 border: 1px solid orange;
-	width: 592px; /* ys3; y = ys1 + ys2 + ys3 */
+	width: 604px; /* ys3; y = ys1 + ys2 + ys3 */
 	height: auto; /* probably don't need to say this though */
 	float: left;
 }
@@ -264,6 +264,7 @@ border: 1px solid orange;
 	max-height: 500px;
 	float: left;
 	font-size: 10px;
+	margin: 3px;
 	
 }
 

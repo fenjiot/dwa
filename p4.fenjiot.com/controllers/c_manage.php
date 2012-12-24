@@ -7,7 +7,7 @@ class manage_controller extends base_controller	{
 		# To make sure user is logged in if they want to use anything in this controller
 		if(!$this->user) {
 			die("Members only. <a href='/users/login'>Login</a> or <a href='/users/signup'>Signup</a>");
-		}
+		}		
 
 	} // end __construct
 
@@ -22,6 +22,8 @@ class manage_controller extends base_controller	{
 		
 	} // end addproduct fct
 
+# =============================
+# BEGIN RELATED TO ADDPRODUCT v
 	public function p_addproduct() {
 		
 		# Associate this post with this user
@@ -33,39 +35,118 @@ class manage_controller extends base_controller	{
 		
 # ADD LOGIC TO Check to see if product is already in the system, BUT for now move on...
 		
-		# Drop [submit] => 'Add product' from $_POST
-		# This is currently neccessary, since $_POST is capturing the submit button's value when submitting
-		unset($_POST['submit']);
 
-		# Insert product information into products table
-		# Note: we don't have to sanatize any of the $_POST data because we're using an insert method that does it for us
-		# Also grabbing product_id for the newly added product
-		$new_product_id = DB::instance(DB_NAME)->insert('products', $_POST);
+		# Build array to fill DB table
+		#products
+		$product_info = array(
+						'created' 		=> Time::now(),
+						'modified' 		=> Time::now(),
+						'user_id' 		=> $_POST['user_id'],
+						'name' 			=> $_POST['product_name'],
+						'category'		=> $_POST['product_category'],
+						'description'	=> $_POST['product_description'],
+						'story'			=> $_POST['product_story'],
+						);
+		
+		# Insert into products table
+		$new_product_id = DB::instance(DB_NAME)->insert('products', $product_info);
+		
+		
+		# Build array to fill DB table
+		#materials
+		$material_info = array(
+						'created' 		=> Time::now(),
+						'modified' 		=> Time::now(),
+						'user_id' 		=> $_POST['user_id'],
+						'name' 			=> $_POST['material_name'],
+						'description'	=> $_POST['material_description'],
+						'color'			=> $_POST['material_color'],
+						);
+
+		# Insert into materials table
+		$new_material_id = DB::instance(DB_NAME)->insert('materials', $material_info);
+	
+	
+		# Build array to fill DB table
+		#products_materials
+		# Needs to be after you have inserted product_info into DB and generated product_id
+		$products_materials_info = array(
+								'created' 		=> Time::now(),
+								'modified' 		=> Time::now(),
+								'product_id'	=> $new_product_id,
+								'material_id'	=> $new_material_id,
+								);
+								
+		# Insert into products_materials table
+		DB::instance(DB_NAME)->insert('products_materials', $products_materials_info);
+		
+		
+		# Prep arrays to be sent to p_addimage
+		$POST_info = array(
+					'user_id'		=> $_POST['user_id'],
+					'product_id'	=> $new_product_id,
+					# Temp^
+					);
+		$FILES_info = $_FILES;
+
+
+		# Call p_addimage 
+		# Needs to be after you have inserted product_info into DB and generated product_id
+		# Inserts image file and info into app and creates thumbnail
+		$new_image_id = $this->p_addimage($POST_info, $FILES_info);
+		
+		
+		# Build array to fill DB table
+		#products_images
+		$products_images_info = array(
+								'created' 		=> Time::now(),
+								'modified' 		=> Time::now(),
+								'product_id'	=> $new_product_id,
+								'image_id'		=> $new_image_id,
+								);
+								
+		# Insert into products_images table
+		DB::instance(DB_NAME)->insert('products_images', $products_images_info);
+		
+		
+		# Build array to fill DB table
+		#materials_images
+		$materials_images_info = array(
+								'created' 		=> Time::now(),
+								'modified' 		=> Time::now(),
+								'material_id'	=> $new_material_id,
+								'image_id'		=> $new_image_id,
+								);
+								
+		# Insert into products_images table
+		DB::instance(DB_NAME)->insert('materials_images', $materials_images_info);
+
 		
 		# Feedback to user
-		Router::redirect("/manage/addproduct?alert=Your product was added! It's product ID is: ".$new_product_id); // AJAX IT
+		Router::redirect("/manage/addproduct?alert=".$product_info['name']." was added!"); // AJAX IT
 
 	} // end p_addproduct fct
 	
-	public function p_addimage() {
-		# The database has columns "image_name" 
-		# and NOT "title"
+	public function p_addimage($POST_info = NULL, $FILES_info = NULL) {
+		# The database has columns "user_id, name, and path" 
+		
 		$errors     = array();
-		$file_ext   = strtolower(strrchr($_FILES['image_name']['name'], '.'));
-		$file_size  = $_FILES['image_name']['size'];
-		$file_tmp   = $_FILES['image_name']['tmp_name'];
+		$file_ext   = strtolower(strrchr($FILES_info['image_name']['name'], '.'));
+		$file_size  = $FILES_info['image_name']['size'];
+		$file_tmp   = $FILES_info['image_name']['tmp_name'];
 		$extensions = array(".jpeg",".jpg",".png",".gif",".tif",".tiff");
 		
 		# Grab only product_id number from the alert
-		$new_product_id = str_replace(" ", "", strrchr($_POST['product_id'],' '));
+#		$new_product_id = str_replace(" ", "", strrchr($post_info['product_id'],' '));
 # WRITE LOGIC FOR CASE IF USER DID NOT ADD A NEW PRODUCT AND IS JUST TRYING TO ADD AN IMAGE
 
-		# Build mysql query for product_name 
-		$q = "SELECT product_name
+
+		# Build mysql query for product.name 
+		$q = "SELECT name
 			FROM products
-			WHERE ".$new_product_id." = product_id";
+			WHERE product_id = ".$POST_info['product_id'];
 			
-		# Go through DB and get product_name by product_id
+		# Go through DB and get product.name by product_id
 		# With str_replace, we are replaceing spaces (" ") or dashes ("-") with underscores ("_").
 		# i.e. "Saddle Bag" and "Saddle-Bag" would become "Saddle_Bag"
 		$replace = array(" ", "-");
@@ -73,74 +154,190 @@ class manage_controller extends base_controller	{
 		
 		# Set file name to $new_product_id - $product_name - Time Now.ext
 		# i.e. 16-Saddle_Bag-1355883801.jpg
-		$file_name = $new_product_id."-".$product_name."-".Time::now()."".$file_ext; //$_FILES['image_name']['name'];
+		$file_name = $POST_info['product_id']."-".$product_name."-".Time::now()."".$file_ext; //$_FILES['image_name']['name'];
 		
 		# Check to see if it's an image
-		if(isset($_FILES['image_name'])){
+		if(isset($FILES_info['image_name'])){
 			if(in_array($file_ext,$extensions) === false){
 				Router::redirect("/manage/addproduct?error=Only jpg, png or gif images please.");
+				
+				return 0;
 			}
 			else if($file_size > 2097152) { 
 				# 2097152 bytes = 2 MB
 				Router::redirect("/manage/addproduct?error=Your file size is too big. Max file size is 2 MB");
+				
+				return 0;
 			}	
 			else {
-				//echo "That works";
 				
-				# Preparing $_POST injection
-				$_POST['user_id'] 		= $this->user->user_id;
-				$_POST['created'] 		= Time::now();
-				$_POST['modified'] 		= Time::now();
-				$_POST['image_name']	= $file_name;
-				$_POST['image_path']	= "/images/raerden/products/".$file_name; // IMPORTANT CHECK TO MAKE SURE IT IS STORING THEM CORRECTLY!
-				$_POST['product_id']	= $new_product_id;
+				# Build array to fill DB table
+				#images
+				$image_info['created'] 	= Time::now();
+				$image_info['modified'] = Time::now();
+				$image_info['user_id'] 	= $this->user->user_id;
+				$image_info['name']		= $file_name;
+				$image_info['path']		= "/images/raerden/products/".$file_name;
 				
-				# Drop [submit] => 'Add product' from $_POST
-				# This is currently neccessary, since $_POST is capturing the submit button's value when submitting
-				unset($_POST['submit']);
-				
-				# Save to database
-				$image_id = DB::instance(DB_NAME)->insert('images', $_POST);
-	 
 				# Save to your file path			
 				move_uploaded_file($file_tmp, APP_PATH."/images/raerden/products/".$file_name);
 				
-				# Create thumbnail of image
-					# Load image
-					$imgObj = new Image(APP_PATH."/images/raerden/products/".$file_name);
-					
-					# Creates new name for image.  Tags on -thumb after image name before .ext 
-					$thumbnail = Utils::postfix("-thumb",APP_PATH."/images/raerden/products/".$file_name);
-					
-					$new_file_name = basename($file_name, $file_ext)."-thumb".$file_ext;
-					
-					# Resize image w x h
-					$imgObj->resize(140,190,'auto');
-					
-					# Save image to path with new name.
-					$imgObj->save_image($thumbnail,100);
-					
-					# Modify $_POST for thumbnail name
-					$_POST['thumb_name'] 	= $new_file_name;
-					$_POST['thumb_path'] 	= "/images/raerden/products/".$new_file_name;
-					$_POST['image_id']		= $image_id;
-					unset($_POST['image_name']);
-					unset($_POST['image_path']);
-					
-					# Stick image into database
-					DB::instance(DB_NAME)->insert('thumbs', $_POST);
-
-				# Redirect
-				Router::redirect("/manage/addproduct?alertimage=Your image has been added!");
+				# Call p_createthumbnail
+				# Creates thumbnail and returns array
+				$thumb_info = $this->create_thumb($image_info['name']);
+				
+				# Add thumb_name and thumb_path
+				$image_info['thumb_name'] = $thumb_info['name'];
+				$image_info['thumb_path'] = $thumb_info['path'];
+				
+				# Save to database
+				$new_image_id = DB::instance(DB_NAME)->insert('images', $image_info);
+				
+				return $new_image_id;
 			}
 		} // end check to see if it's an image
 			
 		# Send an error message if it's not an image
 		else {
-			Router::redirect("/manage/addproduct?errorimage=Please select an image to upload");
+#			Router::redirect("/manage/addproduct?errorimage=Please select an image to upload");
 		}
 		
 	} // end of p_addimage fct
+	
+	public function create_thumb($image_name) {
+	# Create thumbnail of image
+		# Load image
+		$imgObj = new Image(APP_PATH."/images/raerden/products/".$image_name);
+		
+		# Get file extension
+		$file_ext = strtolower(strrchr($image_name, '.'));
+		
+		# Creates new name for image.  Tags on -thumb at end of name before .ext
+		# i.e. product_name-thumb.jpeg
+		# Store new path for thumb
+		$thumb_name = basename($image_name, $file_ext)."-thumb".$file_ext;
+		$thumb_path = "/images/raerden/products/".$thumb_name;
+		
+		# Resize image either to 140w or 190h, auto => keeps proportions
+		$imgObj->resize(140,190,'auto');
+		
+		# Save image to path with new name.
+		$imgObj->save_image($thumb_path,100);
+		
+		# Modify $_POST for thumbnail name
+		$thumb_info = array(
+					'name' => $thumb_name, 
+					'path' => $thumb_path,
+					);
+		
+		return $thumb_info;
+
+	} // end create_thumb fct
+	
+# END RELATED TO ADDPRODUCT ^	
+# ===========================
+	
+		public function index() {
+		
+		# Setup the view
+		$this->template->content 	= View::instance('v_manage_index');
+		$this->template->title		= "Manage Products";
+		
+		# Build our qurey of all products -- want to display all products in system
+		$q = "SELECT *
+			FROM products";
+		
+		# Run our query and store the results in the variable $products
+		$all_products = DB::instance(DB_NAME)->select_rows($q);
+		
+		# In order to query for the products we need, we're going to need a string of product id's, separated by commas
+		# To create this, loop through our connections array
+		$all_products_string = ""; // empty at first
+		
+		foreach($all_products as $key => $product) {
+			$all_products_string .= $product['product_id'] . ",";
+		}
+
+		# Added to fix error that arises when following no one
+		# This avoids the issue later with having nothing in the '$q = "SELECT * ... IN ()";' syntax error with the empty ()
+		if($all_products_string == "") {
+			# If $connections_string is empty (i.e. when the user isn't following anyone) set to user_id_followed 0
+			$all_products_string = "0,";	
+		}
+		
+		# Remove final comma in $connections_string
+		$all_products_string = substr($all_products_string, 0, -1);
+			
+		
+		# BEGIN ADDING MATERIALS ARRAY INFO
+		# Selection for products_materials
+		$select = "m.name, m.description, m.color, p.product_id";
+		
+		# Build material query
+		$q = "SELECT ".$select."
+			FROM materials AS m
+			JOIN products_materials AS p_m ON p_m.material_id = m.material_id
+			JOIN products AS p ON p.product_id = p_m.product_id
+			WHERE p.product_id IN (".$all_products_string.")";
+		
+		$all_materials = DB::instance(DB_NAME)->select_rows($q);
+	
+
+		# Build array to pass to view
+		# Insert $all_materials arrays into proper place in $all_products array
+		foreach($all_products as $key => $product) {
+			$i=0; // will be used in materials foreach if statement
+			$product['materials'] = "";
+			foreach($all_materials as $keyy => $material) {
+				if($product['product_id'] == $material['product_id']) {
+					$material_x = 'material-'.$i;
+					$product['materials'][$material_x] = $material;
+					$i++;
+				} // end if
+			} // end forech materials
+			$all_products[$key] = $product;
+		} // end foreach products
+		# END ADDING MATERIALS ARRAY INFO
+
+
+		# BEGIN ADDING IMAGES ARRAY INFO
+		# Selection for products_images
+		$select = "i.name, i.path, i.thumb_name, i.thumb_path, p.product_id";
+
+		# Build image query
+		$q = "SELECT ".$select."
+			FROM images AS i
+			JOIN products_images AS p_i ON p_i.image_id = i.image_id
+			JOIN products AS p ON p.product_id = p_i.product_id
+			WHERE p.product_id IN (".$all_products_string.")";
+		
+		$all_images = DB::instance(DB_NAME)->select_rows($q);
+		
+
+		# Insert $all_images arrays into proper place in $all_products array
+		foreach($all_products as $key => $product) {
+			$i=0; // will be used in materials foreach if statement
+			$product['images'] = "";
+			foreach($all_images as $keyy => $image) {
+				if($product['product_id'] == $image['product_id']) {
+					$image_x = 'image-'.$i;
+					$product['images'][$image_x] = $image;
+					$i++;
+				} // end if
+			} // end forech materials		
+			$all_products[$key] = $product;
+		} // end foreach products
+		# END ADDING IMAGES ARRAY INFO
+		
+		
+		# Pass the data to the view
+		$this->template->content->products 	= $all_products;
+				
+		# Render the view
+		echo $this->template;
+		
+	} // end index fct
+	
 	
 	public function product() {
 		
@@ -155,7 +352,7 @@ class manage_controller extends base_controller	{
 		# Execute out qurey, storing results in a variable $all_products
 		$all_products = DB::instance(DB_NAME)->select_rows($q);
 
-		# In order to query for the posts we need, we're going to need a string of user id's, separated by commas
+		# In order to query for the products we need, we're going to need a string of product id's, separated by commas
 		# To create this, loop through our connections array
 		$all_products_string = ""; // empty at first
 		
@@ -192,64 +389,14 @@ class manage_controller extends base_controller	{
 		$products = DB::instance(DB_NAME)->select_rows($q);
 // NOTE: THIS IS ONLY RETURNING PRODUCTS WITH IMAGES CONNECTED TO THEM DUE TO THE $q ABOVE
 	
+
+	
 		# Pass the data to the view
 		$this->template->content->products 	= $products;
 		
 		# Render the view
 		echo $this->template;
 	} // end of products fct
-	
-	public function index() {
-		
-		# Setup the view
-		$this->template->content 	= View::instance('v_manage_index');
-		$this->template->title		= "Manage";
-		
-		# Build our qurey of all products -- want to display all products in system
-		$q = "SELECT *
-			FROM products";
-			
-		# Execute out qurey, storing results in a variable $all_products
-		$all_products = DB::instance(DB_NAME)->select_rows($q);
-
-		# In order to query for the posts we need, we're going to need a string of user id's, separated by commas
-		# To create this, loop through our connections array
-		$all_products_string = ""; // empty at first
-		
-		foreach($all_products as $key => $product) {
-			$all_products_string .= $product['product_id'] . ",";
-		}
-
-		# Added to fix error that arises when following no one
-		# This avoids the issue later with having nothing in the '$q = "SELECT * ... IN ()";' syntax error with the empty ()
-		if($all_products_string == "") {
-			# If $connections_string is empty (i.e. when the user isn't following anyone) set to user_id_followed 0
-			$all_products_string = "0,";	
-		}
-		
-		# Remove final comma in $connections_string
-		$all_products_string = substr($all_products_string, 0, -1);
-
-		# Run our query and store the results in the variable $products
-		$products = DB::instance(DB_NAME)->select_rows($q);
-# WORKING ON!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!		
-		# Now build our query to grab the thumbs for existing products
-		$q = "SELECT products.product_id, thumbs.thumb_path
-			FROM products
-			JOIN thumbs USING (product_id)
-			WHERE product_id IN (" . $all_products_string . ")";
-		
-		$thumbs = DB::instance(DB_NAME)->select_rows($q);
-		
-# WORKING ON!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!				
-		# Pass the data to the view
-		$this->template->content->products 	= $products;
-		$this->template->content->thumbs	= $thumbs;
-		
-		# Render the view
-		echo $this->template;
-		
-	} // end index fct
 	
 	public function editproduct() {
 	
@@ -272,9 +419,10 @@ class manage_controller extends base_controller	{
 		echo $this->template;
 		
 	} // end of editproduct
-	
+
+# WORK ON! vvvvvvvvvv !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	
 	public function p_editproduct() {
-# WOKRING ON!!!!!!!!!!!!!!!!!!!!!!
+
 		# Unix timestamp of when this post was modified
 		$_POST['modified'] 	= Time::now();
 
@@ -286,45 +434,111 @@ class manage_controller extends base_controller	{
 		Router::redirect("/manage");
 	
 	} // end edit fct
+# WORK ON! ^^^^^^^^^^ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-
-# ========================================================================================================================= #
-# BELOW THE FOLD
-# ========================================================================================================================= #		
-
+	public function get_materials($product_id = NULL) {
 	
-	public function users() {
-		
 		# Setup the view
-		$this->template->content	= View::instance('v_posts_users');
-		$this->template->title		= "People to Follow";
+		$this->template->content 	= View::instance('v_manage_get_materials');
+		$this->template->title 		= "Get Merials";
+
+		# Build query of material_ids associated with the specified product
+		$q = "SELECT material_id
+			FROM products_materials
+			WHERE product_id = ".$product_id;
 		
-		# Build our query to get all the users
+		# Build array of material_ids associated with the specified product
+		$all_materials = DB::instance(DB_NAME)->select_rows($q);
+		
+		# In order to query for the materials we need, we're going to need a string of user id's, separated by commas
+		# To create this, loop through our connections array
+		$all_materials_string = ""; // empty at first
+		
+		foreach($all_materials as $key => $material) {
+			$all_materials_string .= $material['material_id'] . ",";
+		}
+
+		# Added to fix error that arises when following no one
+		# This avoids the issue later with having nothing in the '$q = "SELECT * ... IN ()";' syntax error with the empty ()
+		if($all_materials_string == "") {
+			# If $connections_string is empty (i.e. when the user isn't following anyone) set to user_id_followed 0
+			$all_materials_string = "0,";	
+		}
+		
+		# Remove final comma in $connections_string
+		$all_materials_string = substr($all_materials_string, 0, -1);
+		
+		# Build query of all materials for the specificed product
 		$q = "SELECT *
-			FROM users";
+			FROM materials
+			WHERE material_id = ".$all_materials_string;
 			
-		# Execute the qurey to get all the users. Store the results in array in the variable $users
-		$users = DB::instance(DB_NAME)->select_rows($q);
-		
-		# Building our query to figure out what connections does this user already have.  i.e. who are they following
-		$q = "SELECT *
-			FROM users_users
-			WHERE user_id = ".$this->user->user_id;
-		
-		# Execute this query with the select_array method
-		# select_array will return our results in an array and use the "user_id_followed" field as the index
-		# This will come in handy when we get to the view
-		# Store our results (an array) in the variables $connections
-		$connections = DB::instance(DB_NAME)->select_array($q, 'user_id_followed');
-		
-		# Pass the data to the view
-		$this->template->content->users			= $users;
-		$this->template->content->connections	= $connections;
+		# Build array of all the material information associated with the specified product
+		$materials = DB::instance(DB_NAME)->select_rows($q);
+
+		# COMMENTED OUT FOR NOW.  IDEALLY SWITCH THIS FUNCTION TO LIBRARY AND CALL FROM THERE.
+#		return $materials; // Returns array of all the materials and related information associated with the specified product
+
+		# Pass existing product information to view
+		$this->template->content->materials = $materials;
 		
 		# Render the view
 		echo $this->template;
+
+	} // end of get_materials fct
+	
+
+	public function get_images($relationship_table = NULL, $col_related = NULL, $fields_of_interest = NULL) {
+	
+		# Build query		
+		$q = "SELECT image_id
+			FROM ".$relationship_table."
+			WHERE ".$col_related." = ".$fields_of_interest;
 		
-	} // end users fct
+		# Build array
+		$results = DB::instance(DB_NAME)->select_rows($q);
+		
+		# In order to query for the materials we need, we're going to need a string of user id's, separated by commas
+		# To create this, loop through our connections array
+		$all_images_string = ""; // empty at first
+		
+		foreach($all_images as $key => $image) {
+			$all_images_string .= $image['image_id'] . ",";
+		}
+
+		# Added to fix error that arises when following no one
+		# This avoids the issue later with having nothing in the '$q = "SELECT * ... IN ()";' syntax error with the empty ()
+		if($all_images_string == "") {
+			# If $connections_string is empty (i.e. when the user isn't following anyone) set to user_id_followed 0
+			$all_images_string = "0,";	
+		}
+		
+		# Remove final comma in $connections_string
+		$all_images_string = substr($all_images_string, 0, -1);
+		
+		# Build new query
+		$q = "SELECT *
+			FROM images
+			WHERE image_id = ".$results;
+		
+		# Build new array complete with all associated data	
+		$images = DB::instance(DB_NAME)->select_rows($q);
+		
+		# COMMENTED OUT FOR NOW.  IDEALLY SWITCH THIS FUNCTION TO LIBRARY AND CALL FROM THERE.
+#		return $images; // Returns array of images associated with product(s), material(s), etc
+		
+		# Pass existing product information to view
+		$this->template->content->images = $images;
+		
+		# Render the view
+		echo $this->template;
+
+	} // end of get_images fct
+	
+	
+# ========================================================================================================================= #
+# BELOW THE FOLD
+# ========================================================================================================================= #		
 	
 	
 	public function follow($user_id_followed) {
