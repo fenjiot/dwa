@@ -237,6 +237,7 @@ class manage_controller extends base_controller	{
 # END RELATED TO ADDPRODUCT ^	
 # ===========================
 	
+	
 		public function index() {
 		
 		# Setup the view
@@ -345,13 +346,13 @@ class manage_controller extends base_controller	{
 		$this->template->content	= View::instance('v_manage_product');
 		$this->template->title		= "Manage Product";
 		
-		# Build our qurey of products -- want to display all products in system
+		# Build our qurey of all products -- want to display all products in system
 		$q = "SELECT *
 			FROM products";
-			
-		# Execute out qurey, storing results in a variable $all_products
+		
+		# Run our query and store the results in the variable $products
 		$all_products = DB::instance(DB_NAME)->select_rows($q);
-
+		
 		# In order to query for the products we need, we're going to need a string of product id's, separated by commas
 		# To create this, loop through our connections array
 		$all_products_string = ""; // empty at first
@@ -369,30 +370,71 @@ class manage_controller extends base_controller	{
 		
 		# Remove final comma in $connections_string
 		$all_products_string = substr($all_products_string, 0, -1);
-
-		# Selecting specific information we want $post to contain later on 
-		# We don't want to pass token, user.password, user.created, user.modified, etc
-		# Using DB table: posts AS p, users AS u		
-		$select = "p.product_id, p.created, p.modified, p.user_id, 
-				p.product_name, p.product_category, p.product_description, 
-				p.product_story, p.material_name, p.material_color, 
-				p.material_description, t.product_id, t.thumb_name, 
-				t.thumb_path";
+			
 		
-		# Now build our query to grab the products
-		$q = "SELECT " . $select . "
-			FROM products AS p
-			JOIN thumbs AS t USING (product_id)
-			WHERE p.product_id IN (" . $all_products_string . ")"; // this is where we're using the string of product_ids we created
-
-		# Run our query and store the results in the variable $posts
-		$products = DB::instance(DB_NAME)->select_rows($q);
-// NOTE: THIS IS ONLY RETURNING PRODUCTS WITH IMAGES CONNECTED TO THEM DUE TO THE $q ABOVE
+		# BEGIN ADDING MATERIALS ARRAY INFO
+		# Selection for products_materials
+		$select = "m.name, m.description, m.color, p.product_id";
+		
+		# Build material query
+		$q = "SELECT ".$select."
+			FROM materials AS m
+			JOIN products_materials AS p_m ON p_m.material_id = m.material_id
+			JOIN products AS p ON p.product_id = p_m.product_id
+			WHERE p.product_id IN (".$all_products_string.")";
+		
+		$all_materials = DB::instance(DB_NAME)->select_rows($q);
 	
 
-	
+		# Build array to pass to view
+		# Insert $all_materials arrays into proper place in $all_products array
+		foreach($all_products as $key => $product) {
+			$i=0; // will be used in materials foreach if statement
+			$product['materials'] = "";
+			foreach($all_materials as $keyy => $material) {
+				if($product['product_id'] == $material['product_id']) {
+					$material_x = 'material-'.$i;
+					$product['materials'][$material_x] = $material;
+					$i++;
+				} // end if
+			} // end forech materials
+			$all_products[$key] = $product;
+		} // end foreach products
+		# END ADDING MATERIALS ARRAY INFO
+
+
+		# BEGIN ADDING IMAGES ARRAY INFO
+		# Selection for products_images
+		$select = "i.name, i.path, i.thumb_name, i.thumb_path, p.product_id";
+
+		# Build image query
+		$q = "SELECT ".$select."
+			FROM images AS i
+			JOIN products_images AS p_i ON p_i.image_id = i.image_id
+			JOIN products AS p ON p.product_id = p_i.product_id
+			WHERE p.product_id IN (".$all_products_string.")";
+		
+		$all_images = DB::instance(DB_NAME)->select_rows($q);
+		
+
+		# Insert $all_images arrays into proper place in $all_products array
+		foreach($all_products as $key => $product) {
+			$i=0; // will be used in materials foreach if statement
+			$product['images'] = "";
+			foreach($all_images as $keyy => $image) {
+				if($product['product_id'] == $image['product_id']) {
+					$image_x = 'image-'.$i;
+					$product['images'][$image_x] = $image;
+					$i++;
+				} // end if
+			} // end forech materials		
+			$all_products[$key] = $product;
+		} // end foreach products
+		# END ADDING IMAGES ARRAY INFO
+		
+		
 		# Pass the data to the view
-		$this->template->content->products 	= $products;
+		$this->template->content->products 	= $all_products;
 		
 		# Render the view
 		echo $this->template;

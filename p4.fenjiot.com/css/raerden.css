@@ -53,10 +53,11 @@ border: 1px solid yellow;
 border: 1px solid blue;
 	width: 1006px; /* w; w = x + y */ /* must be 1006 for now bc of the 1px borders on col-1,2,3; change to 1000px later */
 	height: auto;	
+	min-height: 596px;
 }
 
 .col-1 {
-border: 1px solid green;
+border: 1px solid white;
 	width: 146px; /* x; w = x + y */
 	height: auto; /* probably don't need to say this though */
 	float: left;
@@ -65,7 +66,7 @@ border: 1px solid green;
 }
 
 #main_nav {
-border: 1px solid brown;
+/*border: 1px solid brown; */
 	position: fixed; /* fix in position it loads. Assuming this was set up correctly, it would be in the right place at start instead of offset right now */ 
 	width: 146px; /* actually want to inherit from .col-1 */
 	font-family: 'RobotoRegular' ,sans-serif;
@@ -94,7 +95,7 @@ border: 1px solid brown;
 }
 
 .subnav {
-border: 1px solid red;
+/*border: 1px solid red;*/
 	position: fixed; /* fix in position it loads. Assuming this was set up correctly, it would be in the right place at start instead of offset right now */ 
 	width: 122px; /* actually want to inherit from .col-2-sub1 */
 	font-family: 'RobotoRegular' ,sans-serif;
@@ -113,16 +114,17 @@ border: 1px solid aqua;
 	float: left;
 	margin: 0px;
 	padding: 0px;
+	min-height: 604px;
 }
 
 .col-spacer {
-	border: 1px solid green;
+/*	border: 1px solid green; */
 	width: 500px;
 	height: 50px;	
 }
 
 #content {
-border: 1px solid black;
+/* border: 1px solid black; */
 
 }
 
@@ -154,14 +156,14 @@ border: 1px solid orange;
 }
 
 .col-2-sub1 {
-	border: 1px solid green;
+/*	border: 1px solid green; */
 	width: 122px; /* ys1; y = ys1 + ys2 + ys3 */
 	min-height: 500px;
 	float: left;
 }
 
 .col-2-sub2 {
-	border: 1px solid blue;
+/*	border: 1px solid blue; */
 	width: 122px; /* ys2; y = ys1 + ys2 + ys3 */
 	min-height: 500px;
 	float: left;
@@ -169,7 +171,7 @@ border: 1px solid orange;
 
 .col-2-sub3 {
 border: 1px solid orange;
-	width: 604px; /* ys3; y = ys1 + ys2 + ys3 */
+	width: auto; /* 604px -- ys3; y = ys1 + ys2 + ys3 */
 	height: auto; /* probably don't need to say this though */
 	float: left;
 }
@@ -230,7 +232,7 @@ border: 1px solid orange;
 
 /* styled for v_users_signup */
 .module {
-	border: 1px solid red;
+/*	border: 1px solid red; */
 }
 .field-wrapper {
 	float: left;
@@ -259,13 +261,14 @@ border: 1px solid orange;
 
 /* styled for v_manage_products */
 .tiled {
-	border: 1px solid #27bcca;
+border: 1px solid #27bcca;
 	max-width: 250px;
 	max-height: 500px;
+	min-width: 100px;
+	min-height: 250px;
 	float: left;
 	font-size: 10px;
 	margin: 3px;
-	
 }
 
 .tiled img {
