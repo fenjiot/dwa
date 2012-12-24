@@ -23,13 +23,13 @@
 			<br>
 			
 			<h2 id="description">Description:</h2>
-				<p>This will be an online retail site with curated products like handmade apparel and accessories. 
-				Visitors to the site will eventually be able to shop for items. 
-				Users will eventually be able to login to comment, review and/or suggest items.
-				Users will eventually  be able to build portfolios of items -- kind of like look books.
+				<p>This will be an online retail site with curated products like handmade apparel and accessories. &nbsp; 
+				Visitors to the site will eventually be able to shop for items. &nbsp; 
+				Users will eventually be able to login to comment, review and/or suggest items. &nbsp; 
+				Users will eventually  be able to build portfolios of items -- kind of like look books. &nbsp; 
 				<br><br>
-				Currently users can signup/login to add products to the site via ADD.  
-				After adding a product, the product can be viewed either on the main page after login, or under products
+				Currently users can signup/login to add products to the site via ADD. &nbsp; 
+				After adding a product, the product can be viewed either on the main page after login, or under products a.k.a. prototypes. &nbsp; 
 				
 				</p>
 			<br>
