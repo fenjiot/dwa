@@ -199,7 +199,7 @@ class manage_controller extends base_controller	{
 			
 		# Send an error message if it's not an image
 		else {
-#			Router::redirect("/manage/addproduct?errorimage=Please select an image to upload");
+			Router::redirect("/manage/addproduct?errorimage=Please select an image to upload");
 		}
 		
 	} // end of p_addimage fct
@@ -208,21 +208,21 @@ class manage_controller extends base_controller	{
 	# Create thumbnail of image
 		# Load image
 		$imgObj = new Image(APP_PATH."/images/raerden/products/".$image_name);
-		
+
 		# Get file extension
 		$file_ext = strtolower(strrchr($image_name, '.'));
-		
+
 		# Creates new name for image.  Tags on -thumb at end of name before .ext
 		# i.e. product_name-thumb.jpeg
 		# Store new path for thumb
 		$thumb_name = basename($image_name, $file_ext)."-thumb".$file_ext;
 		$thumb_path = "/images/raerden/products/".$thumb_name;
-		
+
 		# Resize image either to 140w or 190h, auto => keeps proportions
 		$imgObj->resize(140,190,'auto');
-		
+
 		# Save image to path with new name.
-		$imgObj->save_image($thumb_path,100);
+		$imgObj->save_image(APP_PATH.$thumb_path,100);
 		
 		# Modify $_POST for thumbnail name
 		$thumb_info = array(

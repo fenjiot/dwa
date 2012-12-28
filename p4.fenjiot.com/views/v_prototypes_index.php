@@ -47,12 +47,11 @@
 								<li>&nbsp;&nbsp;&nbsp;<?=$product['materials'][$key2]['name']?> -- <?=$product['materials'][$key2]['color']?></li>
 							<? endforeach; ?>
 						</ul>
-						
 					</div>
 				<? endforeach; ?>
 			<? endif; ?>
-		
 		</div> <!-- end main_information div -->
+		<p><a href="/users/login">Login</a> to add products</p>
 	</div><!-- end col-2-sub3 -->	
 </div><!-- end col-wrapper -->
 				
