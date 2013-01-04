@@ -19,7 +19,7 @@
 							<? foreach($product['images'] as $key3 => $image): ?>
 								<li><img src="<?=$product['images'][$key3]['thumb_path']?>" alt="<?=$product['images'][$key3]['name']?>"></li>
 							<? endforeach; ?>
-						</ul>			
+						</ul>
 						<br>						
 						Category: <?=$product['category']?>
 						<br>
@@ -29,7 +29,8 @@
 								<li>&nbsp;&nbsp;&nbsp;<?=$product['materials'][$key2]['name']?> -- <?=$product['materials'][$key2]['color']?></li>
 							<? endforeach; ?>
 						</ul>
-						
+						<br>
+						<a href="/manage/product?=id:<?=$product['product_id']?>">edit</a>
 					</div>
 				<? endforeach; ?>
 			<? endif; ?>
