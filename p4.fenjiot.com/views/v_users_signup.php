@@ -41,14 +41,21 @@
 			<div class="input"><input id="signup-password" type="password" name="password" required="required"></div>
 		</div>  <!-- end .field-wrapper -->
 
-<!-- TAKING OUT FOR NOW	to TEST
+
 		<div class="field-wrapper">
 			<label for="signup-password">Confirm Password</label>
-			<div class="input"><input id="signup-password-confirm" type="password" name="password_confirm" required="required"></div>
+			<div class="input"><input id="signup-password-confirm" type="password" name="password_confirm" required="required"></div>		
 		</div>  <!-- end .field-wrapper -->
 		
 		<div class="clear"></div>	
+	
+		<div class="field-wrapper">
+			<? if(@$_GET['alert']): ?>
+				<span class="error"><?=$_GET['alert']?></span><br>
+			<? endif; ?>
+		</div>  <!-- end .field-wrapper -->
 		
+				
 		<? if($error): ?>
 			<div class="error">
 				 So sorry, that email address has already been registered.

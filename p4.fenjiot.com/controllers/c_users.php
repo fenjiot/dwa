@@ -41,22 +41,43 @@ class users_controller extends base_controller {
 
 		# Encrypt user password
 		$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
+		$_POST['password_confirm'] = sha1(PASSWORD_SALT.$_POST['password_confirm']);
 		
 		# More data we want stored with the user
 		$_POST['created']	= Time::now();
 		$_POST['modified']	= Time::now();
 		$_POST['token']		= sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());
 		
+		# Check password
+		if ($_POST['password'] != $_POST['password_confirm']) {
+			Router::redirect("/users/signup?alert=password does not match");
+		}
+		
 		# Check DB->users->email to make sure it doesn't already exist
 		$q = "SELECT *
 			FROM users
 			WHERE users.email = '".$_POST['email']."'"; 
 
-		$check = DB::instance(DB_NAME)->select_field($q);
+		$check_email = DB::instance(DB_NAME)->select_field($q);
 		
-		# Make sure there isn't an existing user with same email
+		# Check if username is in system
+		$q = "SELECT *
+			FROM users
+			WHERE users.username = '".$_POST['username']."'";
+			
+		$check_username = DB::instance(DB_NAME)->select_field($q);
+		
+		# Add checks together 
+		$check = $check_email + $check_username;
+		
+		# Make sure there isn't an existing user with same email or username
 		if($check == "") {
-			# Insert this user into the database.  Adds contents of $_POST into database.
+		
+			# Prep data to be entered.  Need to remove $_POST['password_confirm'] and ['submit']
+			unset($_POST['password_confirm']);
+			unset($_POST['submit']);
+
+			# Insert this user into the database.  Adds contents of modified $_POST into database.
 			$user_id = DB::instance(DB_NAME)->insert("users",$_POST);
 
 			# Sign the new user in
